@@ -17,11 +17,12 @@ public class Checksum {
     public static void main(String[] args) {
 	Checksum cs = new Checksum(args[0]);
 
-	for (String line : lines) {
+	
+	for (String line : cs.lines) {
 	    //part 1: int min =10000;
 	    //part 1: int max = -1;
 	    int div = 0; // part 1: diff
-	    String[] stringArray = cs.line.split("\t");
+	    String[] stringArray = line.split("\t");
 	    ArrayList<Integer> intsOfThisLine = new ArrayList<Integer>(20);
 	    for (String s : stringArray) {
 		/* part 2 */
