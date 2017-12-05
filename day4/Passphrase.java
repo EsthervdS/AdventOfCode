@@ -1,26 +1,8 @@
+import util.*;
 import java.util.*;
-import java.io.*;
 
 public class Passphrase {
     public static ArrayList<String> lines = new ArrayList<String>();	
-
-    public static void readFile(String fileName) {
-	try {
-	    int i=0;
-	    BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
-	    String line;
-	    while ((line = br.readLine()) != null) {
-		lines.add(line);
-		i++;
-	    }
-	    br.close();
-	} catch (FileNotFoundException e) {
-	    System.err.println("FileNotFoundException: " + e.getMessage());
-	} catch (IOException e) {
-	    System.err.println("IOException: " + e.getMessage());
-	}
-	System.out.println("Read " + lines.size() + " lines");
-    }
 
     public static boolean isAnagram(String s1, String s2) {
 	char[] t1 = s1.toCharArray();
@@ -34,7 +16,7 @@ public class Passphrase {
 
     public static void main(String[] args) {
 
-	readFile(args[0]);
+	lines = IO.readFile(args[0]);
 	int valid = 0;
 	for (int i=0; i<lines.size(); i++) {
 	    //check within a line for duplicate words

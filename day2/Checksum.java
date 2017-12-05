@@ -1,33 +1,27 @@
 import java.io.*;
 import java.util.*;
+import util.*;
 
 public class Checksum {
 
-    public static void main(String[] args) {
-	int checksum = 0;
-	ArrayList<String> lines = new ArrayList<String>();
+    public ArrayList<String> lines;
+    public int checksum;
+    public Checksum(String fileName) {
+	lines = new ArrayList<String>();	
+	lines = IO.readFile(fileName);
+	checksum = 0;
 	
-	try {
-	    int i=0;
-	    BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(args[0])));
-	    String line;
-	    while ((line = br.readLine()) != null) {
-		lines.add(line);
-		i++;
-	    }
-	    br.close();
-	} catch (FileNotFoundException e) {
-	    System.err.println("FileNotFoundException: " + e.getMessage());
-	} catch (IOException e) {
-	    System.err.println("IOException: " + e.getMessage());
-	}
-	System.out.println("Read " + lines.size() + " lines");
+    }
 
-	for (int i=0; i<lines.size(); i++) {
+
+    public static void main(String[] args) {
+	Checksum cs = new Checksum(args[0]);
+
+	for (int i=0; i<cs.lines.size(); i++) {
 	    //part 1: int min =10000;
 	    //part 1: int max = -1;
 	    int div = 0; // part 1: diff
-	    String[] stringArray = lines.get(i).split("\t");
+	    String[] stringArray = cs.lines.get(i).split("\t");
 	    ArrayList<Integer> intsOfThisLine = new ArrayList<Integer>(20);
 	    for (int j=0; j<stringArray.length; j++) {
 		/* part 2 */
@@ -52,10 +46,10 @@ public class Checksum {
 	    }
 	    //part 1: diff = max - min;
 	     
-	    checksum += div; // part 1: += diff
+	    cs.checksum += div; // part 1: += diff
 	}
 
-	System.out.println("Checksum = " + checksum);
+	System.out.println("Checksum = " + cs.checksum);
 	
     }
 }
