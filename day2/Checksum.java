@@ -17,15 +17,15 @@ public class Checksum {
     public static void main(String[] args) {
 	Checksum cs = new Checksum(args[0]);
 
-	for (int i=0; i<cs.lines.size(); i++) {
+	for (String line : lines) {
 	    //part 1: int min =10000;
 	    //part 1: int max = -1;
 	    int div = 0; // part 1: diff
-	    String[] stringArray = cs.lines.get(i).split("\t");
+	    String[] stringArray = cs.line.split("\t");
 	    ArrayList<Integer> intsOfThisLine = new ArrayList<Integer>(20);
-	    for (int j=0; j<stringArray.length; j++) {
+	    for (String s : stringArray) {
 		/* part 2 */
-		int thisInt = Integer.parseInt(stringArray[j],10);
+		int thisInt = Integer.parseInt(s,10);
 		intsOfThisLine.add(thisInt);
 
 		//part 1: if (thisInt < min) min = thisInt;

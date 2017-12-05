@@ -18,9 +18,9 @@ public class Passphrase {
 
 	lines = IO.readFile(args[0]);
 	int valid = 0;
-	for (int i=0; i<lines.size(); i++) {
+	for (String line : lines) {
 	    //check within a line for duplicate words
-	    String[] words = lines.get(i).split(" ");
+	    String[] words = line.split(" ");
 	    boolean thisIsValid = true;
 	    for (int j=0; j<words.length; j++) {
 		for (int k=j+1; k<words.length; k++) {
