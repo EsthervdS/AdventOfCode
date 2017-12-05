@@ -32,7 +32,7 @@ public class EscapeMaze {
 	    }
 	    
 	    steps++;
-	    System.out.println("steps = " + steps + "pos was " + oldpos + " pos will be " + pos
+	    System.out.println("steps = " + steps + "pos was " + oldpos + " pos will be " + pos);
 
 	    if ((pos < 0) || (pos >= N)) {
 		done = true;
