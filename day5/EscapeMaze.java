@@ -11,8 +11,8 @@ public class EscapeMaze {
 	lines = new ArrayList<String>();
 	lines = IO.readFile(fileName);
 	offsets = new ArrayList<Integer>(lines.size());
-	for (int i=0; i<lines.size(); i++) {
-	    offsets.add(i,Integer.parseInt(lines.get(i)));
+	for (String line : lines) {
+	    offsets.add(Integer.parseInt(line));
 	}
 	N = lines.size();
     }
@@ -37,7 +37,7 @@ public class EscapeMaze {
 		done = true;
 	    }
 	}
-	System.out.println("Escaped the maze! That took " + steps + " steps.");
+	System.out.println("Escaped the maze! That took " + steps + " steps. Last computed index is " + pos);
 	
     }
     
