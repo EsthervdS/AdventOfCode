@@ -25,4 +25,7 @@ public class IO {
 	return lines;
     }
 
+    public static void print(String s) {
+	System.out.println(s);
+    }
 }
