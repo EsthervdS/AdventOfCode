@@ -25,23 +25,31 @@ public class MD5 {
 	return res;
     }
 
-    public static void main(String[] args) {
-	String prefix = args[0];
+    private static int findAnswer(String prefix, int n) {
 	int i = 1;
-	String md5,five;
+	String md5,zeroes;
 	String cc = prefix + Integer.toString(i);
+	String zeroStr = "";
+	for (int j=0; j<n; j++) {
+	    zeroStr += "0";
+	}
 	while (true) {
 	    md5 = computeMD5(cc);
-	    five = md5.substring(0,5);
-
-	    if (!five.equals("00000")) {
+	    zeroes = md5.substring(0,n);
+	    
+	    if (zeroes.equals(zeroStr)) {
 		break;
 	    } else {
 		i++;
 		cc = prefix + Integer.toString(i);
 	    }
 	}
-	IO.print("Part 1: " + i);
+	return i;
+    }
+    public static void main(String[] args) {
+	String secret = args[0];
+	IO.print("Part 1: " + findAnswer(secret, 5));
+	IO.print("Part 2: " + findAnswer(secret, 6));
 
     }
 }
