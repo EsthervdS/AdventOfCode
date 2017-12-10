@@ -6,23 +6,30 @@ public class KnotHash {
     ArrayList<String> lines;
     ArrayList<Integer> lengths;
     ArrayList<Integer> rope;
-    int currpos, skip; 
+    int currpos, skip;
+    boolean part1done;
     
     public KnotHash(String fileName, int l) {
 	lines = IO.readFile(fileName);
 	// get sequence of lengths
 	lengths = new ArrayList<Integer>();
 
-	String[] ls = lines.get(0).split(",");
-	for(int i=0; i<ls.length; i++) {
-	    lengths.add(Integer.parseInt(ls[i]));
+	String ascii = lines.get(0).trim();
+	for(int i=0; i<ascii.length(); i++) {
+	    lengths.add(ascii.charAt(i)+0);
 	}
 
+	//add suffix
+	lengths.add(17); lengths.add(31); lengths.add(73);
+	lengths.add(47); lengths.add(23);
+
+	//IO.print(lengths.toString());
 	//create initial rope
 	rope = new ArrayList<Integer>(l);
 	for (int i=0; i<l; i++) rope.add(i);
 	currpos = 0;
 	skip = 0;
+	part1done = false;
     }
 
     private void process() {
@@ -31,7 +38,35 @@ public class KnotHash {
 	    currpos = (currpos + skip + lengths.get(i)) % rope.size();
 	    skip++;
 	}
-	IO.print("Part 1: " + (rope.get(0) * rope.get(1)));	
+	if (!part1done) {
+	    IO.print("Part 1: " + (rope.get(0) * rope.get(1)));
+	    part1done = true;
+	}
+    }
+
+    private void process2() {
+	for (int i=0; i<64; i++) {
+	    process();
+	}
+
+	//make dense hash from sparse hash
+	ArrayList<Integer> denseHash = new ArrayList<Integer>();
+	for (int i=0; i<16; i++) {
+	    int xor = 0;
+	    for (int j=i*16; j<(i+1)*16; j++) {
+		xor ^= rope.get(j);
+	    }
+	    denseHash.add(xor);
+	}
+	
+	//convert to hexadecimal
+	String hexa = "";
+	for(int i=0; i<16; i++) {
+	    String s = Integer.toHexString(denseHash.get(i));
+	    if (s.length() == 1) s = "0"+s;
+	    hexa += s;
+	}
+	IO.print("Part 2: " + hexa);
     }
     
     private void reverseRange(int sI, int l) {
@@ -49,6 +84,8 @@ public class KnotHash {
     public static void main(String[] args) {
 	int seqL = Integer.parseInt(args[1]);
 	KnotHash kh = new KnotHash(args[0],seqL);
-	kh.process();
+
+	kh.process2();
+
     }
 }
