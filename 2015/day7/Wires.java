@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Wires {
 
+    public static int part1;
     ArrayList<String> lines;
-    ArrayList<Integer> wires;
     HashMap<String,String> expressions;
     
     public Wires(String fileName) {
@@ -12,7 +12,7 @@ public class Wires {
 	expressions = new HashMap<String,String>();
     }
     
-    public void process() {
+    public void process(boolean part2) {
 	// *** Grammar ***
 	// expr: <inst> -> <wire>
 	// <wire> : String
@@ -25,11 +25,24 @@ public class Wires {
 	    
 	    String toWire = lines.get(i).split("->")[1].trim();
 	    String instruction = lines.get(i).split("->")[0].trim();
-
-	    expressions.put(toWire,instruction);
+	    if (part2) {
+		if (toWire.equals("b")) {
+		    expressions.put(toWire,part1+"");
+		} else {
+		    expressions.put(toWire,instruction);
+		}
+		    
+	    } else {
+		expressions.put(toWire,instruction);
+	    }
 	}
 	String finalWire = "a";
-	IO.print("Part 1: " + finalWire + " = " + evaluate(finalWire));
+	if (!part2) {
+	    part1 = evaluate(finalWire);
+	    IO.print("Part 1: " + part1);
+	} else {
+	    IO.print("Part 2: " + evaluate(finalWire));
+	}
     }
 
     private int evaluate(String s) {
@@ -99,9 +112,12 @@ public class Wires {
 	// only got here if we didn't return false
 	return true;
     }
-    
+
     public static void main(String[] args) {
 	Wires w = new Wires(args[0]);
-	w.process();
+	w.process(false);
+	Wires w2 = new Wires(args[0]);
+	w2.process(true);
+	
     }
 }
