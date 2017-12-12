@@ -1,45 +1,78 @@
 import util.*;
 import java.util.*;
+import java.lang.*;
 
 public class DigitalPlumbing {
 
     ArrayList<String> lines;
-    LinkedHashSet<String> groupZero;
+    HashSet<String> currGroup;
+    LinkedHashMap<String,String[]> connections;
+    LinkedHashMap<String,String[]> stillopen;
     
     public DigitalPlumbing(String fileName) {
 	lines = IO.readFile(fileName);
-	groupZero = new LinkedHashSet<String>();
-	groupZero.add("0");
+	currGroup = new HashSet<String>();
+	connections = new LinkedHashMap<String,String[]>();
+	stillopen = new LinkedHashMap<String,String[]>();
+	init();
     }
 
-    public void process() {
-	addToGroupZero();
-	IO.print("Part 1: " + groupZero.size());
-    }
+    public HashSet<String> getComponent(String start) {
+	HashSet<String> curr = new HashSet<String>();
+	HashSet<String> open = new HashSet<String>();
+	HashSet<String> visited = new HashSet<String>();
 
-    public void addToGroupZero() {
-	int prevSize = 0;
-	while (groupZero.size() != prevSize) {
-	    prevSize = groupZero.size();
-	    for (String l : lines) {
-		String[] ls = l.split("<->");
-		String thisPipe = ls[0].trim();
-		if (groupZero.contains(thisPipe)) {
-		    //add pipes after <-> to groupZero
-		    //l = 2 <-> 0, 3, 4
-		    //ls = ["2","0, 3, 4"]
-		    String[] otherPipes = ls[1].split(", ");
-		    for (int i=0; i<otherPipes.length; i++) {
-			groupZero.add(otherPipes[i].trim());
+	open.add(start);
+
+	while(open.size()>0) {
+	    String next = open.iterator().next();
+	    if (!visited.contains(next)) {
+		visited.add(next);
+		if (connections.containsKey(next)) {
+		    for (String c : connections.get(next)) {
+			if (!visited.contains(c)) {
+			    open.add(c);
+			}
 		    }
 		}
+		if (!curr.contains(next)) curr.add(next);
+		open.remove(next);
+	    }
+	}
+	return curr;
+    }
+    
+    public void init() {
+	for (String l : lines) {
+	    String thisPipe = l.split("<->")[0].trim();
+	    String[] otherPipes = l.split("<->")[1].split(", ");
+	    for (int i=0; i<otherPipes.length; i++) otherPipes[i] = otherPipes[i].trim();
+	    connections.put(thisPipe,otherPipes);
+	}
+	stillopen = new LinkedHashMap<String,String[]>(connections);
+    }
+    
+    public static void main(String[] args) {
+	DigitalPlumbing dp = new DigitalPlumbing(args[0]);
+
+	HashSet<String> group = dp.getComponent("0");
+	IO.print("Part 1: " + group.size());
+
+	for (String p : group) {
+	    dp.stillopen.remove(p);
+	}
+
+	int cnt = 1;
+	
+	while (dp.stillopen.size() > 0) {
+	    String curr = dp.stillopen.keySet().iterator().next();
+	    group = dp.getComponent(curr);
+	    cnt++;
+	    for (String p : group) {
+		dp.stillopen.remove(p);
 	    }
 	    
 	}
-    }
-	
-    public static void main(String[] args) {
-	DigitalPlumbing dp = new DigitalPlumbing(args[0]);
-	dp.process();
+	IO.print("Part 2: " + cnt);
     }
 }
