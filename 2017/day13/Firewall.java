@@ -20,6 +20,18 @@ public class Firewall {
 	}
     }
 
+    public boolean getThroughSafe(int delay) {
+	boolean safe = true;
+	int currDepth = 0;
+	while (currDepth <= maxDepth) {
+	    if (scanners[currDepth] != null) {
+		safe = safe && scanners[currDepth].safe(delay+currDepth);
+	    }
+	    currDepth++;
+	}
+	return safe;
+    }
+    
     public int computeSeverity(int delay) {
 	int sev = 0;
 	int currDepth = 0;
@@ -34,15 +46,13 @@ public class Firewall {
 
     public static void main(String[] args) {
 	Firewall fw = new Firewall(args[0]);
+
+	IO.print("Part 1: " + fw.computeSeverity(0));
 	
 	int delay=0;
 	while (true) {
-	    IO.print("**** Delay = " + delay + " ****");
-	    int sev = fw.computeSeverity(delay);
-	    if (delay == 0) IO.print("Part 1: " + sev);
-	    if (sev==0) break;
+	    if (fw.getThroughSafe(delay)) break;
 	    delay++;
-	    
 	}
 	IO.print("Part 2: " + delay);
 	
