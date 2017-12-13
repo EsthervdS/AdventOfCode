@@ -21,16 +21,13 @@ public class Firewall {
     }
 
     public int computeSeverity(int delay) {
-	int currTime = delay;
 	int sev = 0;
-
 	int currDepth = 0;
 	while (currDepth <= maxDepth) {
 	    if (scanners[currDepth] != null) {
-		sev += scanners[currDepth].severity(currTime);
+		sev += scanners[currDepth].severity(delay+currDepth);
 	    }
 	    currDepth++;
-	    currTime++;
 	}
 	return sev;
     }
