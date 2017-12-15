@@ -66,7 +66,8 @@ public class ShortestRoute {
     
     public void process() {
 	int minDist = 100000;
-	ArrayList<String> minRoute = new ArrayList<String>();
+	int maxDist = -1;
+
 	ArrayList<ArrayList<String>> routes = permute(cities);
 	//for (ArrayList<String> l : routes) IO.print(l.toString());
 
@@ -75,12 +76,11 @@ public class ShortestRoute {
 	    for (int i=0; i<(route.size()-1); i++) {
 		thisDist += dist[cities.indexOf(route.get(i))][cities.indexOf(route.get(i+1))];
 	    }
-	    if (thisDist < minDist) {
-		minDist = thisDist;
-		minRoute = route;
-	    }
+	    if (thisDist < minDist) minDist = thisDist;
+	    if (thisDist > maxDist) maxDist = thisDist;
 	}
-	IO.print(minRoute.toString() + " is " + minDist + " long.");
+	IO.print("Part 1: " + minDist);
+	IO.print("Part 2: " + maxDist);
 	
     }
     
