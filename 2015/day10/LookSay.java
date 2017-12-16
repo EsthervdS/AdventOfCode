@@ -4,36 +4,31 @@ import java.util.*;
 public class LookSay {
     
 
-    public static void process(String start) {
-	String res = ""; // current looksay number in sequence
-	String prev = start; // previous looksay number in sequence
-	
-	
-	for(int it=0;it<50;++it) {
-	    //compute next looksay number in sequence
-	    String temp = "";
-	    int i = 0;
-	    while (i<prev.length()) {
-		//iterate over all chars in previous number
-		char num = prev.charAt(i);
-		int nChar = 1;
-		while ( (i<(prev.length()-1)) && (num == prev.charAt(i+1)) ) {
-		    //iterate to find subsequence of same digit
-		    nChar++;
-		    i++;
-		}
-		temp = temp + nChar + "" + num + "";
-		i++;
+    public static String process(String start) {
+	StringBuilder res = new StringBuilder(); // current looksay number in sequence
+
+	for (int i=0; i<start.length(); ++i) {
+	    //iterate over all chars in previous number
+	    char num = start.charAt(i);
+	    int nChar = 1;
+	    while ( (i+1<start.length()) && (num == start.charAt(i+1)) ) {
+		//iterate to find subsequence of same digit
+		++nChar;
+		++i;
 	    }
-	    prev = temp;
-	    res = temp;
-	    if (it == 39) IO.print("Part 1: " + res.length());
+	    res.append(nChar);
+	    res.append(num);
 	}
-	IO.print("Part 2: " + res.length());
+	return res.toString();
+
     }
     
     public static void main(String[] args) {
-	String startSeq = "1113122113";
-	process(startSeq);
-    }
+	String next = "1113122113";
+
+	for (int i=0; i<50; ++i) {
+	    next = process(next);
+	    if (i == 39) IO.print("Part 1: " + next.length());
+	}
+	IO.print("Part 2: " + next.length());    }
 }
