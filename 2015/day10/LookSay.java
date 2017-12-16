@@ -9,7 +9,7 @@ public class LookSay {
 	String prev = start; // previous looksay number in sequence
 	
 	
-	for(int it=0;it<40;++it) {
+	for(int it=0;it<50;++it) {
 	    //compute next looksay number in sequence
 	    String temp = "";
 	    int i = 0;
@@ -27,8 +27,9 @@ public class LookSay {
 	    }
 	    prev = temp;
 	    res = temp;
+	    if (it == 39) IO.print("Part 1: " + res.length());
 	}
-	IO.print("Part 1: " + res.length());
+	IO.print("Part 2: " + res.length());
     }
     
     public static void main(String[] args) {
