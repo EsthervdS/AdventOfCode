@@ -21,7 +21,7 @@ public class IO {
 	} catch (IOException e) {
 	    System.err.println("IOException: " + e.getMessage());
 	}
-	System.out.println("Read " + lines.size() + " lines");
+	//System.out.println("Read " + lines.size() + " lines");
 	return lines;
     }
 
