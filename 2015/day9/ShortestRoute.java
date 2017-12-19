@@ -37,6 +37,7 @@ public class ShortestRoute {
 
 	    dist[i1][i1] = 0;
 	    dist[i2][i2] = 0;
+
 	}
     }
     
