@@ -78,8 +78,10 @@ public class Particles {
 	boolean coll = false;
 	IO.print("Checking 2 particles: " + p1.toString() + " and " + p2.toString());
 	IO.print("DetX = " + detX(p1,p2));
-	IO.print("At time 9: p1: " + p1.getX(9) + " - " + p1.getY(9) + " - " + p1.getZ(9));
-	IO.print("At time 9: p2: " + p2.getX(9) + " - " + p2.getY(9) + " - " + p2.getZ(9));
+	IO.print("At time 10: p0: " + p1.getX(10) + " - " + p1.getY(10) + " - " + p1.getZ(10));
+	IO.print("Formula p0: " + p1.px + " + " + p1.vx + " * 10 " + " + 1/2 * " + p1.ax + " 10^2");
+	IO.print("At time 10: p1: " + p2.getX(10) + " - " + p2.getY(10) + " - " + p2.getZ(10));
+	IO.print("Formula p1: " + p2.px + " + " + p2.vx + " * 10 " + " + 1/2 * " + p2.ax + " 10^2");
 	// solve positions for t
 	if ( !(detX(p1,p2)<0) ) {
 	    //1 or 2 solutions
@@ -145,6 +147,12 @@ public class Particles {
 	for (int t=0; t<5000; t++) {
 	    for (Particle p : particles) {
 		p.move();
+	    }
+	    if (t<=9) {
+		Particle p0 = particles.get(0);
+		Particle p1 = particles.get(1);
+		IO.print("t=" + t + " p0: " + p0.currX + " - " + p0.currY + " - " + p0.currZ);
+		IO.print("t=" + t + " p1: " + p1.currX + " - " + p1.currY + " - " + p1.currZ);
 	    }
 	    for (int i=0; i<particles.size(); ++i) {
 		Particle p1 = particles.get(i);
