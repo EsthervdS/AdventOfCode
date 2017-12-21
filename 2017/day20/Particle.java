@@ -55,15 +55,15 @@ public class Particle {
     }
 
     public double getX(double t) {
-	return (px + (vx * t) + (ax * t*t) / 2);
+	return (px + (vx * t) + (ax * t*(t+1)) / 2);
     }
 
     public double getY(double t) {
-	return (py + (vy * t) + (ay * t*t) / 2);
+	return (py + (vy * t) + (ay * t*(t+1)) / 2);
     }
 
     public double getZ(double t) {
-	return (pz + (vz * t) + (az * t*t) / 2);
+	return (pz + (vz * t) + (az * t*(t+1)) / 2);
     }
 
     public String toString() {
