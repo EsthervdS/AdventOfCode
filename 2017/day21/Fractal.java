@@ -26,10 +26,14 @@ public class Fractal {
     }
 
     public void process() {
-	for (int it=1;it<=5; it++) {
-	    IO.print("============ CURRENT FRACTAL before iteration " + it + " =======");
-	    IO.print(currFractal.toString());
-	    IO.print(currFractal.pixelsOn()+"\n=====\n");
+	for (int it=1;it<=18; it++) {
+	    IO.print("Iteration " + it);
+	    
+	    if (fractalSize % 2 == 0) {
+		squareSize = 2;
+	    } else {
+		squareSize = 3;
+	    }
 	    
 	    int nSquares = fractalSize / squareSize; // per dimension
 	    //5 iterations
@@ -58,12 +62,6 @@ public class Fractal {
 			    if (squares[i][j].isInstanceOf(q)) {
 				//create new pattern based on rule
 				newFractal[i][j] = rules.get(q);
-				if (i==0 && j==1) {
-				    IO.print("Match!");
-				    IO.print(squares[i][j].toString());
-				    IO.print("matches");
-				    IO.print(q.toString());
-				}
 			    } 
 			}
 		    }
@@ -74,30 +72,26 @@ public class Fractal {
 	    squareSize++;
 	    currFractal = new Pattern(newFractal,nSquares,squareSize);
 
-	    //reset square size for next iteration
-	    if (squareSize == 4) squareSize = 2;
-	    if (squareSize == 3) squareSize = 3;
+	    if (it==5) IO.print("Part 1: " + currFractal.pixelsOn());
 
 	}
-	IO.print("Final fractal");
-	IO.print(currFractal.toString());
-	IO.print("Part 1: " + currFractal.pixelsOn());
+	IO.print("Part 2: " + currFractal.pixelsOn());
     }
 
     private String patternString(boolean[][] p, int s, int sI, int sJ) {
 	//create pattern input string from sxs pattern  in array p starting at index (sI,sJ) 
-	String res = "";
+	StringBuilder res = new StringBuilder("");
 	for (int i =sI; i<(sI+s); i++) {
 	    for (int j=sJ; j<(sJ+s); j++) {
 		if (p[i][j]) {
-		    res += "#";
+		    res.append('#');
 		} else {
-		    res += ".";
+		    res.append('.');
 		}
 	    }
-	    res += "/";
+	    res.append('/');
 	}
-	return res;
+	return res.toString();
     }
     
     public static void main(String[] args) {

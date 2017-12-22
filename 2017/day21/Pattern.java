@@ -133,17 +133,16 @@ public class Pattern {
 
     public boolean isInstanceOf(Pattern q) {
 	boolean instOf = false;
-	//p0 = this
-	Pattern p1 = q.flipHorizontally();
-	Pattern p2 = q.flipVertically();
-	Pattern p3 = q.rotateClockwise();
-	Pattern p4 = q.rotateCounterclockwise();
-	Pattern p5 = p1.flipVertically();
-	Pattern p6 = p3.flipVertically();
-	Pattern p7 = p4.flipVertically();
-	Pattern p8 = p3.flipHorizontally();
-	Pattern p9 = p4.flipHorizontally();
-	return ( matches(q) || matches(p1) || matches(p2) || matches(p3) || matches(p4) || matches(p5) || matches(p6) || matches(p7) || matches(p8) || matches(p9) );
+	//p0 = q
+	Pattern p1 = q.rotateClockwise(); //90
+	Pattern p2 = p1.rotateClockwise(); //180
+	Pattern p3 = p2.rotateClockwise(); //270
+	Pattern p4 = q.flipHorizontally(); //mirror
+	Pattern p5 = p4.rotateClockwise(); //90 mirror
+	Pattern p6 = p5.rotateClockwise(); //180 mirror
+	Pattern p7 = p6.rotateClockwise(); //270 mirror
+
+	return ( matches(q) || matches(p1) || matches(p2) || matches(p3) || matches(p4) || matches(p5) || matches(p6) || matches(p7) );
 
     }
 
@@ -172,11 +171,7 @@ public class Pattern {
 		if (p[i][j]) c++;
 	    }
 	}
-
-	IO.print( "First: " + (str.length() - str.replace("#", "").length()) + " and second " + c);
 	return ( str.length() - str.replace("#", "").length() );
-	
-
 	
     }
 }
