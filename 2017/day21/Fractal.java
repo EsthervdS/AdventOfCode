@@ -26,8 +26,10 @@ public class Fractal {
     }
 
     public void process() {
+	long starttime = System.currentTimeMillis();
 	for (int it=1;it<=18; it++) {
-	    IO.print("Iteration " + it);
+	    
+	    long elapsed = System.currentTimeMillis();
 	    
 	    if (fractalSize % 2 == 0) {
 		squareSize = 2;
@@ -36,7 +38,7 @@ public class Fractal {
 	    }
 	    
 	    int nSquares = fractalSize / squareSize; // per dimension
-	    //5 iterations
+
 	    Pattern[][] squares = new Pattern[nSquares][nSquares];
 	    
 	    for (int i=0; i<nSquares; i++) {
@@ -54,10 +56,14 @@ public class Fractal {
 	    fractalSize += nSquares;
 
 	    Pattern[][] newFractal = new Pattern[nSquares][nSquares];
-	    
+
+	    int perc = 1;
+	    long startIteration = System.currentTimeMillis();
 	    for (int i=0; i<nSquares; i++) {
+		
 		for (int j=0; j<nSquares; j++) {
 		    for (Pattern q : rules.keySet()) {
+			
 			if (q.size == squares[i][j].size) {
 			    if (squares[i][j].isInstanceOf(q)) {
 				//create new pattern based on rule
@@ -71,7 +77,7 @@ public class Fractal {
 	    //create new fractal from new patterns
 	    squareSize++;
 	    currFractal = new Pattern(newFractal,nSquares,squareSize);
-
+	    
 	    if (it==5) IO.print("Part 1: " + currFractal.pixelsOn());
 
 	}

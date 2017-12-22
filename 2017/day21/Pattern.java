@@ -132,7 +132,7 @@ public class Pattern {
 
 
     public boolean isInstanceOf(Pattern q) {
-	boolean instOf = false;
+
 	//p0 = q
 	Pattern p1 = q.rotateClockwise(); //90
 	Pattern p2 = p1.rotateClockwise(); //180
@@ -141,8 +141,16 @@ public class Pattern {
 	Pattern p5 = p4.rotateClockwise(); //90 mirror
 	Pattern p6 = p5.rotateClockwise(); //180 mirror
 	Pattern p7 = p6.rotateClockwise(); //270 mirror
-
-	return ( matches(q) || matches(p1) || matches(p2) || matches(p3) || matches(p4) || matches(p5) || matches(p6) || matches(p7) );
+	if (matches(q)) return true;
+	if (matches(p1)) return true;
+	if (matches(p2)) return true;
+	if (matches(p3)) return true;
+	if (matches(p4)) return true;
+	if (matches(p5)) return true;
+	if (matches(p6)) return true;
+	if (matches(p7)) return true;
+	
+	return false;
 
     }
 
@@ -164,14 +172,14 @@ public class Pattern {
     }
 
     public int pixelsOn() {
-	String str = this.toString();
+
 	int c=0;
 	for (int i=0; i<size; i++) {
 	    for (int j=0; j<size; j++) {
 		if (p[i][j]) c++;
 	    }
 	}
-	return ( str.length() - str.replace("#", "").length() );
+	return c;
 	
     }
 }
