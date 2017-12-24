@@ -97,6 +97,7 @@ public class HCF {
 	int a,b,c,d,e,f,g,h;
 	a=1;
 	b=c=d=e=f=g=h=0;
+	//initialization: rows 0 - 7
 	
 	b= 84;
 	c= b;
@@ -104,6 +105,7 @@ public class HCF {
 	    b = b*100 + 100000;
 	    c = b + 17000;
 	}
+	
 	done = false;
 	while (!done) { //stop when b==c
 	    f= 1;
