@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 import util.*;
-
+import java.time.*;
 public class Frequency {
 
     public ArrayList<String> lines;
@@ -26,7 +26,9 @@ public class Frequency {
        int size = 1;
        int i = 0, part1 = 0, part2 = 0;
 
-	     while (!twice) {
+       Instant before = Instant.now();
+
+       while (!twice) {
          if (i==f.ints.size()) {
            if (part1 == 0) part1 = f.freq;
            i=0;
@@ -41,8 +43,12 @@ public class Frequency {
            i++;
          }
        }
+// do stuff
+       Instant after = Instant.now();
+       long difference = Duration.between(before, after).toMillis(); // .toWhatsoever()
        IO.print("Part 1: " + part1);
        IO.print("Part 2: " + part2);
+       IO.print(Double.toString(difference));
     }
 
 }
