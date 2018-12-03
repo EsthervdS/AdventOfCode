@@ -64,7 +64,6 @@ public class FabricClaims {
 		    }
 		}
 	    }
-	    IO.print("Claim " + c.id + " has " + ov + " overlapping other claims");
 	    if (isUnique) {
 		fc.uni = c.id;
 	    }

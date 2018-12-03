@@ -17,7 +17,8 @@ class Claim {
     }
 
     public boolean overlaps(Claim d) {
-	boolean ov = d.isInside(xs,ys) || d.isInside(xs+w-1,ys) || d.isInside(xs,ys+h-1) || d.isInside(xs+w-1,ys+h-1);
+	boolean ov = d.isInside(xs,ys) || d.isInside(xs+w-1,ys) || d.isInside(xs,ys+h-1) || d.isInside(xs+w-1,ys+h-1) ||
+	    isInside(d.xs,d.ys) || isInside(d.xs+w-1,d.ys) || isInside(d.xs,d.ys+h-1) || isInside(d.xs+w-1,d.ys+h-1);
 	return ov;
     }
     
