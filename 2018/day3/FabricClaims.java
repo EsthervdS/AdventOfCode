@@ -6,7 +6,7 @@ public class FabricClaims {
 
     public ArrayList<String> lines;
     public ArrayList<Claim> claims;
-    public int overlap, part2;
+    public int overlap, uni;
     
     public FabricClaims(String fileName) {
 	lines = new ArrayList<String>();	
@@ -14,7 +14,7 @@ public class FabricClaims {
 	claims = new ArrayList<Claim>();
 	
 	for (String line : lines) {
-	    part2 = -1;
+
 	    int id = Integer.parseInt(line.split(" @ ")[0].split("#")[1]);
 	    String offset = line.split(" @ ")[1].split(": ")[0];
 	    int x = Integer.parseInt(offset.split(",")[0]);
@@ -29,6 +29,7 @@ public class FabricClaims {
 
 	}
 	overlap = 0;
+	uni = -1;
     }
 
     public static void main(String[] args) {
@@ -52,10 +53,9 @@ public class FabricClaims {
 	
 	IO.print("Part 1: " + fc.overlap);
 
-	int uni = -1;
 	for (Claim c : fc.claims) {
 	    boolean isUnique = true;
-	    for (Claim d : new ArrayList<Claim>(fc.claims)) {
+	    for (Claim d : fc.claims) {
 		if (c.id != d.id) {	
 		    if (c.overlaps(d)) {
 			isUnique = false;
@@ -64,10 +64,10 @@ public class FabricClaims {
 		}
 	    }
 	    if (isUnique) {
-		uni = c.id;
+		fc.uni = c.id;
 	    }
 	}
 					
-	IO.print("Part 2: " + uni);
+	IO.print("Part 2: " + fc.uni);
     }
 }
