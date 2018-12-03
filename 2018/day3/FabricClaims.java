@@ -55,14 +55,16 @@ public class FabricClaims {
 
 	for (Claim c : fc.claims) {
 	    boolean isUnique = true;
+	    int ov = 0;
 	    for (Claim d : fc.claims) {
 		if (c.id != d.id) {	
 		    if (c.overlaps(d)) {
 			isUnique = false;
-			break;
+			ov++;
 		    }
 		}
 	    }
+	    IO.print("Claim " + c.id + " has " + ov + " overlapping other claims");
 	    if (isUnique) {
 		fc.uni = c.id;
 	    }
