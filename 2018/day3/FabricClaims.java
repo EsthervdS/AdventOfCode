@@ -11,11 +11,11 @@ public class FabricClaims {
     public FabricClaims(String fileName) {
 	lines = new ArrayList<String>();	
 	lines = IO.readFile(fileName);
-	int id = 1;
 	claims = new ArrayList<Claim>();
 	
 	for (String line : lines) {
 	    part2 = -1;
+	    int id = Integer.parseInt(line.split(" @ ")[0].split("#")[1]);
 	    String offset = line.split(" @ ")[1].split(": ")[0];
 	    int x = Integer.parseInt(offset.split(",")[0]);
 	    int y = Integer.parseInt(offset.split(",")[1]);
@@ -26,7 +26,7 @@ public class FabricClaims {
 	    
 	    Claim c = new Claim(id,x,y,w,h);
 	    claims.add(c);
-	    id++;
+
 	}
 	overlap = 0;
     }
@@ -34,8 +34,8 @@ public class FabricClaims {
     public static void main(String[] args) {
 	FabricClaims fc = new FabricClaims(args[0]);
 
-	for (int i=0; i<1100; i++) {
-	    for (int j=0; j<1100; j++) {
+	for (int i=0; i<1000; i++) {
+	    for (int j=0; j<1000; j++) {
 		int ov = 0;
 		for (Claim c : fc.claims) {
 		    if (c.isInside(i,j)) {
@@ -55,10 +55,11 @@ public class FabricClaims {
 	int uni = -1;
 	for (Claim c : fc.claims) {
 	    boolean isUnique = true;
-	    for (Claim d : fc.claims) {
+	    for (Claim d : new ArrayList<Claim>(fc.claims)) {
 		if (c.id != d.id) {	
 		    if (c.overlaps(d)) {
 			isUnique = false;
+			break;
 		    }
 		}
 	    }
