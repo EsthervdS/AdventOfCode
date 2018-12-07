@@ -29,9 +29,7 @@ public class Steps {
 	    steps.add(first);
 	    steps.add(last);
 	    if (rules.containsKey(first)) {
-		ArrayList<String> prev = rules.get(first);
-		prev.add(last);
-		rules.replace(first,prev);
+		rules.get(first).add(last);
 	    } else {
 		ArrayList<String> cur = new ArrayList<String>();
 		cur.add(last);
