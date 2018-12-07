@@ -44,9 +44,7 @@ public class Steps {
 	    prelims.put(s,new ArrayList<String>());
 	    for (String k : rules.keySet()) {
 		if (rules.get(k).contains(s)) {
-		    ArrayList<String> prev = prelims.get(s);
-		    prev.add(k);
-		    prelims.replace(s,prev);		    
+		    prelims.get(s).add(k);
 		}
 	    }
 	}
