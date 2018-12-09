@@ -5,24 +5,24 @@ import util.*;
 public class Marbles {
 
     public int nPlayers;
-    public int currentPos;
+    public Marble currentMarble;
     public int nMarbles;
     public int marblesPlayed;
     public int lastMarble;
-    public ArrayList<Integer> marbles;
+    public Marble head,last;
     public int turn;
-    public int[] score;
+    public long[] score;
     
     public Marbles(int nP, int lM) {
 	nPlayers = nP;
 	lastMarble = lM;
-	currentPos = 0;
 	nMarbles = 1;
-	marbles = new ArrayList<Integer>();
-	marbles.add(0);
+	head = new Marble(0);
+	last = head;
+	currentMarble = head;
 	marblesPlayed = 0;
 	turn = 0;
-	score = new int[nPlayers+1];
+	score = new long[nPlayers+1];
 	for (int i=1; i<nPlayers+1; i++) {
 	    score[i] = 0;
 	}
@@ -31,12 +31,14 @@ public class Marbles {
 
     public void printMarbles() {
 	System.out.print("[" + turn + "]");
-	for (int i=0; i<marbles.size(); i++) {
-	    if (i==currentPos) {
-		System.out.print("("+marbles.get(i)+")");
+	Marble it = head;
+	while (it != null) {
+	    if (it == currentMarble) {
+		System.out.print("("+it.value+")");
 	    } else {
-		System.out.print(" "+marbles.get(i)+" ");
+		System.out.print(" "+it.value+" ");
 	    }
+	    it = it.next;
 	}
 	System.out.println("");
     }
@@ -47,26 +49,56 @@ public class Marbles {
 	if (marblesPlayed == (nMarbles/20)) IO.print(".");
 	int insertPos = 1;
 	if (marblesPlayed % 23 != 0) {
-	    if (marblesPlayed>2) {
-		if ((currentPos+2) == marbles.size()) {
-		    marbles.add(marblesPlayed);
-		    insertPos = marbles.size()-1;
-		} else {
-		    insertPos = (currentPos+2) % marbles.size();
-		    marbles.add(insertPos,marblesPlayed);
-		}
+	    //insertM is place where new marble should be inserted
+	    Marble insertM;
+	    if (marblesPlayed == 1) {
+		insertM = last.next;
+	    } else if (marblesPlayed == 2) {
+		insertM = head.next;
 	    } else {
-		marbles.add(1,marblesPlayed);
+		insertM = currentMarble.next;
+		if (insertM == null) {
+		    insertM = head.next;
+		} else {
+		    insertM = insertM.next;
+		}
 	    }
-	    currentPos = insertPos;
+
+	    Marble thisM = new Marble(marblesPlayed);
+	    //special case: inserting at the end of the list
+	    if (insertM == null) {
+		last.next = thisM;
+		thisM.prev = last;
+		last = thisM;
+	    } else if (insertM == head) {
+		//special case: inserting at the beginning of the list
+		thisM.next = head;
+		head.prev = thisM;
+		head = thisM;
+	    } else {
+		//regular case
+		Marble temp = insertM.prev;
+		insertM.prev = thisM;
+		thisM.next = insertM;
+		thisM.prev = temp;
+		if (temp != null) temp.next = thisM;
+	    }
+	    currentMarble = thisM;
 	} else {
 	    //23
 	    score[turn] += marblesPlayed;
-	    int removePos = currentPos - 7;
-	    if (removePos < 0) removePos = (currentPos + marbles.size() - 7);
-	    score[turn] += marbles.get(removePos);
-	    marbles.remove(removePos);
-	    currentPos = removePos;
+	    Marble removeM = currentMarble;
+	    for (int i=0; i<7; i++) {
+		if (removeM.prev == null) {
+		    removeM = last;
+		} else {
+		    removeM = removeM.prev;
+		}
+	    }
+	    score[turn] += removeM.value;
+	    removeM.prev.next = removeM.next;
+	    removeM.next.prev = removeM.prev;
+	    currentMarble = removeM.next;
 	}
 	//printMarbles();
     }
@@ -74,8 +106,8 @@ public class Marbles {
 
 
 
-    public int maxScore() {
-	int maxS = -1;
+    public long maxScore() {
+	long maxS = -1;
 	for (int i=1; i<=nPlayers; i++) {
 	    if (score[i] > maxS) maxS = score[i];
 	}
@@ -83,13 +115,13 @@ public class Marbles {
     }
     
     public static void main(String[] args) {
-	int max = 71307;
-	int nPlayers = 439;
-	Marbles m = new Marbles(nPlayers,max);
+	int nP = Integer.parseInt(args[0]);
+	int max = Integer.parseInt(args[1]);	
+	Marbles m = new Marbles(nP,max);
 	//m.printMarbles();
 	for (int i=0; i<max; i++) m.turn();
 	IO.print("Part 1: " + m.maxScore());
-	m = new Marbles(nPlayers,max*100);
+	m = new Marbles(nP,max*100);
 	for (int i=0; i<max*100; i++) m.turn();
 	IO.print("Part 2: " + m.maxScore());
 	
