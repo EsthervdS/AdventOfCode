@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 import util.*;
+import java.time.*;
 
 public class Marbles {
 
@@ -119,11 +120,20 @@ public class Marbles {
 	int max = Integer.parseInt(args[1]);	
 	Marbles m = new Marbles(nP,max);
 	//m.printMarbles();
+	Instant before = Instant.now();
+	
 	for (int i=0; i<max; i++) m.turn();
 	IO.print("Part 1: " + m.maxScore());
+	Instant after = Instant.now();
+	long difference = Duration.between(before, after).toMillis(); 
+	IO.print(difference+"ms");
 	m = new Marbles(nP,max*100);
+	before = Instant.now();
 	for (int i=0; i<max*100; i++) m.turn();
 	IO.print("Part 2: " + m.maxScore());
+	after = Instant.now();
+	difference = Duration.between(before, after).toMillis(); 
+	IO.print(difference+"ms");
 	
     }
 }
