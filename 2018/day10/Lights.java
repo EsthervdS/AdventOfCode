@@ -105,6 +105,8 @@ public class Lights {
     public static void main(String[] args) {
 	Lights l = new Lights(args[0]);
 	int i=0;
+	Instant before = Instant.now();
+
 	while (true) {
 	    i++;
 	    l.update();
@@ -114,8 +116,11 @@ public class Lights {
 		break;
 	    }
 	}
+	Instant after = Instant.now();
+	long difference = Duration.between(before, after).toMillis(); 
 	IO.print("Part 1:");
 	l.displayPoints();
 	IO.print("Part 2: " + l.seconds);
+	IO.print("Ran in " + difference + "ms");
     }
 }
