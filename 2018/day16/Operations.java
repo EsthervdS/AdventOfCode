@@ -3,25 +3,18 @@ import java.util.*;
 public class Operations {
 
     public static HashMap<String,HashSet<Integer>> opCounts;
-
-    public static void init() {
+    public static HashMap<Integer,String> opMap;
+    public static HashMap<String,Integer> opMapRev;
+    
+    public static void init() {	
 	opCounts = new HashMap<String,HashSet<Integer>>();
-	opCounts.put("addr",new HashSet<Integer>());
-	opCounts.put("addi",new HashSet<Integer>());
-	opCounts.put("mulr",new HashSet<Integer>());
-	opCounts.put("muli",new HashSet<Integer>());
-	opCounts.put("banr",new HashSet<Integer>());
-	opCounts.put("bani",new HashSet<Integer>());
-	opCounts.put("borr",new HashSet<Integer>());
-	opCounts.put("bori",new HashSet<Integer>());
-	opCounts.put("setr",new HashSet<Integer>());
-	opCounts.put("seti",new HashSet<Integer>());
-	opCounts.put("gtir",new HashSet<Integer>());
-	opCounts.put("gtri",new HashSet<Integer>());
-	opCounts.put("gtrr",new HashSet<Integer>());
-	opCounts.put("eqir",new HashSet<Integer>());
-	opCounts.put("eqri",new HashSet<Integer>());
-	opCounts.put("eqrr",new HashSet<Integer>());
+	opMap = new HashMap<Integer,String>();
+	opMapRev = new HashMap<String,Integer>();
+	
+	String[] opStrings = {"addr","addi","mulr","muli","banr","bani","borr","bori","setr","seti","gtir","gtri","gtrr","eqir","eqri","eqrr" };
+	for (int i=0; i<16; i++) {
+	    opCounts.put(opStrings[i],new HashSet<Integer>());
+	}
     }
 
     public static String displayOps() {
@@ -33,97 +26,94 @@ public class Operations {
 	return res;
     }
 
+    public static void computeMapping() {
+	HashMap<String,HashSet<Integer>> temp = new HashMap<String,HashSet<Integer>>(opCounts);
+	while (!temp.isEmpty()) {
+	    for (String op : temp.keySet()) {
+		if (temp.get(op).size() == 1) {
+		    int opcode = temp.get(op).iterator().next();
+		    opMap.put(opcode,op);
+		    opMapRev.put(op,opcode);
+		    for (String op2 : temp.keySet()) {
+			temp.get(op2).remove(opcode);
+		    }
+		    temp.remove(op);
+		    break;
+		}
+	    }
+	}
+    }
+    
     public static int[] perform(int[] in, int opcode, int a, int b, int c) {
 	int[] out = new int[4];
-	String op = "";
-	switch(opcode) {
-	case 0: {
+	String op = opMap.get(opcode);
+	switch(op) {
+	case "seti": {
 	    out = setI(in,a,b,c);
-	    op = "seti";
 	    break;
 	}
-	case 1: {
+	case "eqir": {
 	    out = eqIR(in,a,b,c);
-	    op = "eqir";
 	    break;
 	}
-	case 2: {
+	case "setr": {
 	    out = setR(in,a,b,c);
-	    op = "setr";
 	    break;
 	}
-	case 3: {
+	case "gtir": {
 	    out = gtIR(in,a,b,c);
-	    op = "gtir";
 	    break;
 	}
-	case 4: {
+	case "addi": {
 	    out = addI(in,a,b,c);
-	    op = "addi";
 	    break;
 	}
-	case 5: {
+	case "muli": {
 	    out = mulI(in,a,b,c);
-	    op = "muli";
 	    break;
 	}
-	case 6: {
+	case "mulr": {
 	    out = mulR(in,a,b,c);
-	    op = "mulr";
 	    break;
 	}
-	case 7: {
+	case "gtrr": {
 	    out = gtRR(in,a,b,c);
-	    op = "gtrr";
 	    break;
 	}
-	case 8: {
+	case "bani": {
 	    out = banI(in,a,b,c);
-	    op = "bani";
 	    break;
 	}
-	case 9: {
+	case "gtri": {
 	    out = gtRI(in,a,b,c);
-	    op = "gtri";
 	    break;
 	}
-	case 10: {
+	case "bori": {
 	    out = borI(in,a,b,c);
-	    op = "bori";
 	    break;
 	}
-	case 11: {
+	case "banr": {
 	    out = banR(in,a,b,c);
-	    op = "banr";
 	    break;
 	}
-	case 12: {
+	case "borr": {
 	    out = borR(in,a,b,c);
-	    op = "borr";
 	    break;
 	}
-	case 13: {
+	case "eqri": {
 	    out = eqRI(in,a,b,c);
-	    op = "eqri";
 	    break;
 	}
-	case 14: {
+	case "eqrr": {
 	    out = eqRR(in,a,b,c);
-	    op = "eqrr";
 	    break;
 	}
-	case 15: {
+	case "addr": {
 	    out = addR(in,a,b,c);
-	    op = "addr";
 	    break;
 	}
 	default: break;
 	}
-	System.out.print("Performing operation " + op + " " + a + " " + b + " " + c + " on [");
-	for (int i=0; i<4; i++) System.out.print(in[i]+",");
-	System.out.print("] gives [");
-	for (int i=0; i<4; i++) System.out.print(out[i]+",");
-	System.out.println("]");
 	return out;
     }
     
