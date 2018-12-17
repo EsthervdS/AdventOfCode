@@ -57,7 +57,7 @@ public class Registers {
 	registers[2] = 0;
 	registers[3] = 0;
 	Operations.computeMapping();
-	
+	IO.print(Operations.opMap.toString());
 	while (i < lines.size()) {
 	    String[] instS = lines.get(i).split(" ");
 	    int opcode = Integer.parseInt(instS[0]);
