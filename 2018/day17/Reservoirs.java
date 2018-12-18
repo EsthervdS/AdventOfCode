@@ -9,11 +9,11 @@ public class Reservoirs {
     public Reservoirs(String filename) {
 	lines = IO.readFile(filename);
 	grid = Grid.buildGrid(lines);
-	//Grid.display();
+	Grid.display();
 	toDo = new ArrayDeque<Position>();
 	toDo.addFirst(new Position(500,0));
 	Grid.process(toDo);
-	//Grid.display();
+	Grid.display();
 	
     }
     
