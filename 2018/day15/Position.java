@@ -1,5 +1,5 @@
 public class Position implements Comparable<Position> {
-    public int x,y;
+    public int x,y,dist;
     
     public Position(int i, int j) {
 	x = i;
@@ -9,6 +9,12 @@ public class Position implements Comparable<Position> {
     public Position(Unit u) {
 	x = u.x;
 	y = u.y;
+    }
+
+    public Position(int i, int j, int d) {
+	x = i;
+	y = j;
+	dist = d;
     }
 
     public Position left() {
