@@ -57,6 +57,7 @@ public class Instructions {
 		if (r4values.size() == prevSize) {
 		    //repetition found
 		    IO.print("Part 2: " + prevr4);
+		    break;
 		} else {
 		    prevr4 = registers[4];
 		}
