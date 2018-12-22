@@ -92,9 +92,7 @@ public class Cave {
 	    Element cur = toDo.get(0);
 
 	    if (debug) IO.print("Popped " + cur.toString());// + " from toDo = " + toDo.toString());
-	    if (debug) IO.print("toDo length = " + toDo.size());
 	    toDo.remove(0);
-	    if (debug) IO.print("toDo length = " + toDo.size());
 
 	    int curDist = distances[cur.x][cur.y][cur.t];
 	    if (debug) IO.print("curDist = " + curDist);
