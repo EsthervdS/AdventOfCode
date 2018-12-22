@@ -16,7 +16,7 @@ public class Cave {
 	depth = d;
 	xt = x;
 	yt = y;
-	debug = true; //false;
+	debug = false;
 	init();
 	if (debug) showCave();
 	computeDistances();
@@ -30,7 +30,7 @@ public class Cave {
 	    xmax = 15;
 	    ymax = 15;
 	} else {
-	    xmax = xt+200;
+	    xmax = xt+300;
 	    ymax = yt+200;
 	}
 
@@ -84,60 +84,47 @@ public class Cave {
 	}
     }
     
+    public int otherTool(int r, int t) {
+	if (r==0 & t==0) return 1;
+	if (r==0 & t==1) return 0;
+	if (r==1 & t==1) return 2;
+	if (r==1 & t==2) return 1;
+	if (r==2 & t==0) return 2;
+	if (r==2 & t==2) return 0;
+	return -1;
+    }
+
     public void computeDistances() {
 	//queue of elements sorted by increasing distance
 	ArrayList<Element> toDo = new ArrayList<Element>();
 	toDo.add(new Element(0,0,0,0));
 	while (toDo.size() > 0) {
 	    Element cur = toDo.get(0);
-
-	    if (debug) IO.print("Popped " + cur.toString());// + " from toDo = " + toDo.toString());
 	    toDo.remove(0);
 
 	    int curDist = distances[cur.x][cur.y][cur.t];
 	    if (debug) IO.print("curDist = " + curDist);
 	    if ((cur.d < curDist) || (curDist == -1)) {
 		//we've improved on the shortest path
-		if (debug) IO.print("New best distance = " + cur.d + " for tool " + cur.t);
 		distances[cur.x][cur.y][cur.t] = cur.d;
-		for (int t2 : otherTools(cur.t)) {
-		    int toolDist = distances[cur.x][cur.y][t2];
-		    if ((cur.d+7<toolDist) || (toolDist == -1)) distances[cur.x][cur.y][t2] = cur.d+7;
-		}
 
+		//add switch of tools
+		int t2 = otherTool(types[cur.x][cur.y],cur.t);
+		int toolDist = distances[cur.x][cur.y][t2];
+		if ((cur.d+7 < toolDist) || (toolDist == -1) ) {
+		    toDo.add(new Element(cur.x,cur.y,t2,cur.d+7));
+		}
+		
 		//check for all 4 neighbors 
 		for (Position nb : neighbors(cur)) {
-
-		    if (debug) IO.print("Checking neighbor: " + nb.toString());
-		    //check if current tool is allowed in neighbor region
 		    if (allowed.get(types[nb.x][nb.y]).contains(cur.t)) {
-			//keep tool
-			if (debug) IO.print("Current tool = " + cur.t + " switching to region: " + types[nb.x][nb.y] + " so We can keep the tool");
 			int oldDist = distances[nb.x][nb.y][cur.t];
 			if ( ((cur.d+1)< oldDist) || (oldDist == -1) ) {
-			    //distances[nb.x][nb.y][cur.t] = cur.d+1;
-			    if (debug) IO.print("Adding neighbor " + nb.toString() + " to queue with tool " + cur.t + " and distance " + ((int) (cur.d+1)));
+
 			    Element e = new Element(nb.x,nb.y,cur.t,cur.d+1);
 			    if (!toDo.contains(e)) toDo.add(e);
-			
 			} else {
 			    // else: don't add, no improvement
-			    if (debug) IO.print("No improvement, not adding to the queue");
-			}
-		    } else {
-			//change tool: 2 options
-			if (debug) IO.print("Current tool = " + cur.t + " switching to region: " + types[nb.x][nb.y] + " so we have to switch the tool");
-			for (int t2 : otherTools(cur.t)) {
-			    int oldDist = distances[nb.x][nb.y][t2];
-			    if (debug) IO.print("For tool " + t2 + " best distance was: " + oldDist);
-			    if ( ((cur.d+8)< oldDist) || (oldDist == -1) )  {
-				//distances[nb.x][nb.y][t2] = cur.d+7;
-				if (debug) IO.print("Adding neighbor " + nb.toString() + " to queue with tool " + t2 + " and distance " + ((int) (cur.d+8)));
-				Element e = new Element(nb.x,nb.y,t2,cur.d+8);
-				if (!toDo.contains(e)) toDo.add(e);
-			    } else {
-				if (debug) IO.print("No improvement, not adding to the queue");
-			    }
 			}
 		    }
 		}
@@ -145,8 +132,6 @@ public class Cave {
 		//we've been here before with a shorter distance, so skip this element
 	    }
 	    Collections.sort(toDo);
-	    //if (debug) IO.print("toDo is now " + toDo.toString());
-	    
 	}
     }
 
@@ -174,11 +159,6 @@ public class Cave {
 	}
     }
 
-    
-    public int part2() {
-	return distances[xt][yt][0];
-    }
-    
     public void computeTypes() {
 	types = new int[xmax][ymax];
 	erosion = new int[xmax][ymax];
@@ -248,9 +228,9 @@ public class Cave {
 	return risk;
     }
 
-    
-
-
+    public int part2() {
+	return distances[xt][yt][0];
+    }
     
     public static void main(String[] args) {
 	ArrayList<String> in = IO.readFile(args[0]);
