@@ -8,7 +8,7 @@ public class Group {
     boolean infection;
 
 
-    public Group(int i, String input, boolean infec) {
+    public Group(int i, String input, boolean infec, int boost) {
 	//17 units each with 5390 hit points (weak to radiation, bludgeoning) with an attack that does 4507 fire damage at initiative 2
 	//347 units each with 6624 hit points (immune to fire; weak to bludgeoning) with an attack that does 148 slashing damage at initiative 12
 	//5279 units each with 4712 hit points with an attack that does 8 cold damage at initiative 7
@@ -46,6 +46,8 @@ public class Group {
 			immunities.add(s);
 			s = in.next();
 		    }
+		    s = s.substring(0,s.length()-1);
+		    immunities.add(s);
 		}
 		
 	    } else {
@@ -60,7 +62,7 @@ public class Group {
 		//last one
 	        s = s.substring(0,s.length()-1);
 	        immunities.add(s);
-		
+
 		if (in.next().equals("weak")) {
 		    in.next(); // to
 		    s = in.next();
@@ -72,16 +74,16 @@ public class Group {
 		    //last one
 		    s = s.substring(0,s.length()-1);
 		    weaknesses.add(s);
-		    
 		}
 	    }
 	}
 	while (!in.next().equals("does")) { }
 	
-	damage = in.nextInt();
+	damage = in.nextInt() + boost;
         type = in.next();
 	in.next(); in.next(); in.next(); //damage at initiative
         initiative = in.nextInt();
+	//IO.print("Created group from input: " + input + "\n Becomes: " + toString());
     }
     
     public int effectivePower() {
@@ -114,26 +116,23 @@ public class Group {
 		}
 	    }            
         };
-    }    
+    }
 
     public Group select(ArrayList<Group> targets) {
+	//targets are sorted in decreasing order of effective power and initiative
 	int max = -1;
 	Group sel = null;
+
 	for (Group t : targets) {
-	    if (infection) {
-		//System.out.print("Infection ");
-	    } else {
-		//System.out.print("Immune system ");
-	    }
-	    //IO.print(" group " + nr + " would deal defending group " + t.nr + " " + damageDone(t) + " damage");		
+	    
 	    if (t.nUnits > 0) {
 		if (damageDone(t) > max) {
 		    max = damageDone(t);
 		    sel = t;
-		} else if (damageDone(t) == max && t.effectivePower() > sel.effectivePower()) {
+		} else if ((damageDone(t) == max) && (t.effectivePower() > sel.effectivePower())) {
 		    max = damageDone(t);
 		    sel = t;
-		} else if (damageDone(t) == max && t.effectivePower() == sel.effectivePower() && t.initiative > sel.initiative) {
+		} else if ((damageDone(t) == max) && (t.effectivePower() == sel.effectivePower()) && (t.initiative > sel.initiative)) {
 		    max = damageDone(t);
 		    sel = t;
 		}
@@ -152,12 +151,6 @@ public class Group {
 	    int d = damageDone(target);
 	    int unitsWiped = ( d / target.hp );
 	    if (unitsWiped > target.nUnits) unitsWiped = target.nUnits;
-	    if (infection) {
-		//System.out.print("Infection group " + nr);
-	    } else {
-	        //System.out.print("Immune system group " + nr);
-	    }
-	    //IO.print(" attacks defending group " + target.nr + ", killing " + unitsWiped + " units => damageDone = " + d + " divided by " + target.hp);
 	    target.nUnits -= unitsWiped;
 	}
     }
@@ -174,11 +167,14 @@ public class Group {
     }
     
     public String toString() {
+	String res = nr + " infection: " + infection;
+	/*
 	String res = (infection) ? "INFECTION GROUP: " : "IMMUNESYS GROUP: ";
 	res += "(" + nUnits + " units: HP = " + hp + " attack: " + type + " (" + damage + ")" + " initiative: " + initiative + ") WEAK TO: ";
 	for (String w : weaknesses) res += w + " - ";
 	res += "; IMMUNE TO: ";
-	for (String i : weaknesses) res += i + " - ";
+	for (String i : immunities) res += i + " - ";
+	*/
 	return res;
     }
 }
