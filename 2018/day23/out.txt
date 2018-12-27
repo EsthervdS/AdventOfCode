@@ -1,0 +1,366 @@
+x in [10,50] y in [10,50] z in 10,50]
+Part 1: 6
+w = 64
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=64; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=64; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=64; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=64; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=64; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=64; p=(10,10,10)] is 0 and dev<=b.r = true
+Counted bots for cube: [n=6; w=64; p=(10,10,10)]
+prioQ is now: [[n=6; w=64; p=(10,10,10)]]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=32; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=32; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=32; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=32; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=32; p=(10,10,10)] is 24 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=32; p=(10,10,10)] is 0 and dev<=b.r = true
+Counted bots for cube: [n=6; w=32; p=(10,10,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=32; p=(42,10,10)] is 32 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=32; p=(42,10,10)] is 30 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=32; p=(42,10,10)] is 26 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=32; p=(42,10,10)] is 28 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=32; p=(42,10,10)] is 16 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=32; p=(42,10,10)] is 32 and dev<=b.r = false
+Counted bots for cube: [n=1; w=32; p=(42,10,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=32; p=(10,42,10)] is 30 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=32; p=(10,42,10)] is 28 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=32; p=(10,42,10)] is 30 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=32; p=(10,42,10)] is 28 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=32; p=(10,42,10)] is 16 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=32; p=(10,42,10)] is 32 and dev<=b.r = false
+Counted bots for cube: [n=1; w=32; p=(10,42,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=32; p=(10,10,42)] is 30 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=32; p=(10,10,42)] is 30 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=32; p=(10,10,42)] is 30 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=32; p=(10,10,42)] is 28 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=32; p=(10,10,42)] is 16 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=32; p=(10,10,42)] is 32 and dev<=b.r = false
+Counted bots for cube: [n=1; w=32; p=(10,10,42)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=32; p=(42,42,10)] is 62 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=32; p=(42,42,10)] is 58 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=32; p=(42,42,10)] is 56 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=32; p=(42,42,10)] is 56 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=32; p=(42,42,10)] is 8 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=32; p=(42,42,10)] is 64 and dev<=b.r = false
+Counted bots for cube: [n=1; w=32; p=(42,42,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=32; p=(42,10,42)] is 62 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=32; p=(42,10,42)] is 60 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=32; p=(42,10,42)] is 56 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=32; p=(42,10,42)] is 56 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=32; p=(42,10,42)] is 8 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=32; p=(42,10,42)] is 64 and dev<=b.r = false
+Counted bots for cube: [n=1; w=32; p=(42,10,42)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=32; p=(10,42,42)] is 60 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=32; p=(10,42,42)] is 58 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=32; p=(10,42,42)] is 60 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=32; p=(10,42,42)] is 56 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=32; p=(10,42,42)] is 8 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=32; p=(10,42,42)] is 64 and dev<=b.r = false
+Counted bots for cube: [n=1; w=32; p=(10,42,42)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=32; p=(42,42,42)] is 92 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=32; p=(42,42,42)] is 88 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=32; p=(42,42,42)] is 86 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=32; p=(42,42,42)] is 84 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=32; p=(42,42,42)] is 0 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=32; p=(42,42,42)] is 96 and dev<=b.r = false
+Counted bots for cube: [n=1; w=32; p=(42,42,42)]
+prioQ is now: [[n=6; w=32; p=(10,10,10)], [n=1; w=32; p=(42,10,10)], [n=1; w=32; p=(10,42,10)], [n=1; w=32; p=(10,10,42)], [n=1; w=32; p=(42,42,10)], [n=1; w=32; p=(42,10,42)], [n=1; w=32; p=(10,42,42)], [n=1; w=32; p=(42,42,42)]]
+
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=16; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=16; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=16; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=16; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=16; p=(10,10,10)] is 72 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=16; p=(10,10,10)] is 0 and dev<=b.r = true
+Counted bots for cube: [n=6; w=16; p=(10,10,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=16; p=(26,10,10)] is 16 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=16; p=(26,10,10)] is 14 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=16; p=(26,10,10)] is 10 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=16; p=(26,10,10)] is 12 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=16; p=(26,10,10)] is 56 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=16; p=(26,10,10)] is 16 and dev<=b.r = false
+Counted bots for cube: [n=1; w=16; p=(26,10,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=16; p=(10,26,10)] is 14 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=16; p=(10,26,10)] is 12 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=16; p=(10,26,10)] is 14 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=16; p=(10,26,10)] is 12 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=16; p=(10,26,10)] is 56 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=16; p=(10,26,10)] is 16 and dev<=b.r = false
+Counted bots for cube: [n=1; w=16; p=(10,26,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=16; p=(10,10,26)] is 14 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=16; p=(10,10,26)] is 14 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=16; p=(10,10,26)] is 14 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=16; p=(10,10,26)] is 12 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=16; p=(10,10,26)] is 56 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=16; p=(10,10,26)] is 16 and dev<=b.r = false
+Counted bots for cube: [n=1; w=16; p=(10,10,26)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=16; p=(26,26,10)] is 30 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=16; p=(26,26,10)] is 26 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=16; p=(26,26,10)] is 24 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=16; p=(26,26,10)] is 24 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=16; p=(26,26,10)] is 40 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=16; p=(26,26,10)] is 32 and dev<=b.r = false
+Counted bots for cube: [n=1; w=16; p=(26,26,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=16; p=(26,10,26)] is 30 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=16; p=(26,10,26)] is 28 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=16; p=(26,10,26)] is 24 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=16; p=(26,10,26)] is 24 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=16; p=(26,10,26)] is 40 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=16; p=(26,10,26)] is 32 and dev<=b.r = false
+Counted bots for cube: [n=1; w=16; p=(26,10,26)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=16; p=(10,26,26)] is 28 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=16; p=(10,26,26)] is 26 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=16; p=(10,26,26)] is 28 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=16; p=(10,26,26)] is 24 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=16; p=(10,26,26)] is 40 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=16; p=(10,26,26)] is 32 and dev<=b.r = false
+Counted bots for cube: [n=1; w=16; p=(10,26,26)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=16; p=(26,26,26)] is 44 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=16; p=(26,26,26)] is 40 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=16; p=(26,26,26)] is 38 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=16; p=(26,26,26)] is 36 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=16; p=(26,26,26)] is 24 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=16; p=(26,26,26)] is 48 and dev<=b.r = false
+Counted bots for cube: [n=1; w=16; p=(26,26,26)]
+prioQ is now: [[n=6; w=16; p=(10,10,10)], [n=1; w=16; p=(26,10,10)], [n=1; w=16; p=(10,26,10)], [n=1; w=16; p=(10,10,26)], [n=1; w=16; p=(26,26,10)], [n=1; w=16; p=(26,10,26)], [n=1; w=16; p=(10,26,26)], [n=1; w=32; p=(42,10,10)], [n=1; w=32; p=(10,42,10)], [n=1; w=32; p=(10,10,42)], [n=1; w=16; p=(26,26,26)], [n=1; w=32; p=(42,42,10)], [n=1; w=32; p=(42,10,42)], [n=1; w=32; p=(10,42,42)], [n=1; w=32; p=(42,42,42)]]
+
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=8; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=8; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=8; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=8; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=8; p=(10,10,10)] is 96 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=8; p=(10,10,10)] is 0 and dev<=b.r = true
+Counted bots for cube: [n=6; w=8; p=(10,10,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=8; p=(18,10,10)] is 8 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=8; p=(18,10,10)] is 6 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=8; p=(18,10,10)] is 2 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=8; p=(18,10,10)] is 4 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=8; p=(18,10,10)] is 88 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=8; p=(18,10,10)] is 8 and dev<=b.r = false
+Counted bots for cube: [n=3; w=8; p=(18,10,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=8; p=(10,18,10)] is 6 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=8; p=(10,18,10)] is 4 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=8; p=(10,18,10)] is 6 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=8; p=(10,18,10)] is 4 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=8; p=(10,18,10)] is 88 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=8; p=(10,18,10)] is 8 and dev<=b.r = false
+Counted bots for cube: [n=2; w=8; p=(10,18,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=8; p=(10,10,18)] is 6 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=8; p=(10,10,18)] is 6 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=8; p=(10,10,18)] is 6 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=8; p=(10,10,18)] is 4 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=8; p=(10,10,18)] is 88 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=8; p=(10,10,18)] is 8 and dev<=b.r = false
+Counted bots for cube: [n=2; w=8; p=(10,10,18)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=8; p=(18,18,10)] is 14 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=8; p=(18,18,10)] is 10 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=8; p=(18,18,10)] is 8 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=8; p=(18,18,10)] is 8 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=8; p=(18,18,10)] is 80 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=8; p=(18,18,10)] is 16 and dev<=b.r = false
+Counted bots for cube: [n=1; w=8; p=(18,18,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=8; p=(18,10,18)] is 14 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=8; p=(18,10,18)] is 12 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=8; p=(18,10,18)] is 8 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=8; p=(18,10,18)] is 8 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=8; p=(18,10,18)] is 80 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=8; p=(18,10,18)] is 16 and dev<=b.r = false
+Counted bots for cube: [n=1; w=8; p=(18,10,18)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=8; p=(10,18,18)] is 12 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=8; p=(10,18,18)] is 10 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=8; p=(10,18,18)] is 12 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=8; p=(10,18,18)] is 8 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=8; p=(10,18,18)] is 80 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=8; p=(10,18,18)] is 16 and dev<=b.r = false
+Counted bots for cube: [n=1; w=8; p=(10,18,18)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=8; p=(18,18,18)] is 20 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=8; p=(18,18,18)] is 16 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=8; p=(18,18,18)] is 14 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=8; p=(18,18,18)] is 12 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=8; p=(18,18,18)] is 72 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=8; p=(18,18,18)] is 24 and dev<=b.r = false
+Counted bots for cube: [n=1; w=8; p=(18,18,18)]
+prioQ is now: [[n=6; w=8; p=(10,10,10)], [n=3; w=8; p=(18,10,10)], [n=2; w=8; p=(10,18,10)], [n=2; w=8; p=(10,10,18)], [n=1; w=8; p=(18,18,10)], [n=1; w=8; p=(18,10,18)], [n=1; w=8; p=(10,18,18)], [n=1; w=16; p=(26,10,10)], [n=1; w=16; p=(10,26,10)], [n=1; w=16; p=(10,10,26)], [n=1; w=8; p=(18,18,18)], [n=1; w=16; p=(26,26,10)], [n=1; w=16; p=(26,10,26)], [n=1; w=16; p=(10,26,26)], [n=1; w=32; p=(42,10,10)], [n=1; w=32; p=(10,42,10)], [n=1; w=32; p=(10,10,42)], [n=1; w=16; p=(26,26,26)], [n=1; w=32; p=(42,42,10)], [n=1; w=32; p=(42,10,42)], [n=1; w=32; p=(10,42,42)], [n=1; w=32; p=(42,42,42)]]
+
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=4; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=4; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=4; p=(10,10,10)] is 2 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=4; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=4; p=(10,10,10)] is 108 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=4; p=(10,10,10)] is 0 and dev<=b.r = true
+Counted bots for cube: [n=6; w=4; p=(10,10,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=4; p=(14,10,10)] is 4 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=4; p=(14,10,10)] is 2 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=4; p=(14,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=4; p=(14,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=4; p=(14,10,10)] is 104 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=4; p=(14,10,10)] is 4 and dev<=b.r = true
+Counted bots for cube: [n=4; w=4; p=(14,10,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=4; p=(10,14,10)] is 2 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=4; p=(10,14,10)] is 0 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=4; p=(10,14,10)] is 4 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=4; p=(10,14,10)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=4; p=(10,14,10)] is 104 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=4; p=(10,14,10)] is 4 and dev<=b.r = true
+Counted bots for cube: [n=4; w=4; p=(10,14,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=4; p=(10,10,14)] is 2 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=4; p=(10,10,14)] is 2 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=4; p=(10,10,14)] is 4 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=4; p=(10,10,14)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=4; p=(10,10,14)] is 104 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=4; p=(10,10,14)] is 4 and dev<=b.r = true
+Counted bots for cube: [n=3; w=4; p=(10,10,14)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=4; p=(14,14,10)] is 6 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=4; p=(14,14,10)] is 2 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=4; p=(14,14,10)] is 2 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=4; p=(14,14,10)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=4; p=(14,14,10)] is 100 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=4; p=(14,14,10)] is 8 and dev<=b.r = false
+Counted bots for cube: [n=3; w=4; p=(14,14,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=4; p=(14,10,14)] is 6 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=4; p=(14,10,14)] is 4 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=4; p=(14,10,14)] is 2 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=4; p=(14,10,14)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=4; p=(14,10,14)] is 100 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=4; p=(14,10,14)] is 8 and dev<=b.r = false
+Counted bots for cube: [n=3; w=4; p=(14,10,14)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=4; p=(10,14,14)] is 4 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=4; p=(10,14,14)] is 2 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=4; p=(10,14,14)] is 6 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=4; p=(10,14,14)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=4; p=(10,14,14)] is 100 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=4; p=(10,14,14)] is 8 and dev<=b.r = false
+Counted bots for cube: [n=2; w=4; p=(10,14,14)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=4; p=(14,14,14)] is 8 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=4; p=(14,14,14)] is 4 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=4; p=(14,14,14)] is 4 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=4; p=(14,14,14)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=4; p=(14,14,14)] is 96 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=4; p=(14,14,14)] is 12 and dev<=b.r = false
+Counted bots for cube: [n=2; w=4; p=(14,14,14)]
+prioQ is now: [[n=6; w=4; p=(10,10,10)], [n=4; w=4; p=(14,10,10)], [n=4; w=4; p=(10,14,10)], [n=3; w=4; p=(10,10,14)], [n=3; w=4; p=(14,14,10)], [n=3; w=4; p=(14,10,14)], [n=3; w=8; p=(18,10,10)], [n=2; w=4; p=(10,14,14)], [n=2; w=8; p=(10,18,10)], [n=2; w=8; p=(10,10,18)], [n=2; w=4; p=(14,14,14)], [n=1; w=8; p=(18,18,10)], [n=1; w=8; p=(18,10,18)], [n=1; w=8; p=(10,18,18)], [n=1; w=16; p=(26,10,10)], [n=1; w=16; p=(10,26,10)], [n=1; w=16; p=(10,10,26)], [n=1; w=8; p=(18,18,18)], [n=1; w=16; p=(26,26,10)], [n=1; w=16; p=(26,10,26)], [n=1; w=16; p=(10,26,26)], [n=1; w=32; p=(42,10,10)], [n=1; w=32; p=(10,42,10)], [n=1; w=32; p=(10,10,42)], [n=1; w=16; p=(26,26,26)], [n=1; w=32; p=(42,42,10)], [n=1; w=32; p=(42,10,42)], [n=1; w=32; p=(10,42,42)], [n=1; w=32; p=(42,42,42)]]
+
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=2; p=(10,10,10)] is 0 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=2; p=(10,10,10)] is 2 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=2; p=(10,10,10)] is 4 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=2; p=(10,10,10)] is 6 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=2; p=(10,10,10)] is 114 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=2; p=(10,10,10)] is 0 and dev<=b.r = true
+Counted bots for cube: [n=3; w=2; p=(10,10,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=2; p=(12,10,10)] is 2 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=2; p=(12,10,10)] is 2 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=2; p=(12,10,10)] is 2 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=2; p=(12,10,10)] is 4 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=2; p=(12,10,10)] is 112 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=2; p=(12,10,10)] is 2 and dev<=b.r = true
+Counted bots for cube: [n=4; w=2; p=(12,10,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=2; p=(10,12,10)] is 0 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=2; p=(10,12,10)] is 0 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=2; p=(10,12,10)] is 4 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=2; p=(10,12,10)] is 4 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=2; p=(10,12,10)] is 112 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=2; p=(10,12,10)] is 2 and dev<=b.r = true
+Counted bots for cube: [n=5; w=2; p=(10,12,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=2; p=(10,10,12)] is 0 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=2; p=(10,10,12)] is 2 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=2; p=(10,10,12)] is 4 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=2; p=(10,10,12)] is 4 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=2; p=(10,10,12)] is 112 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=2; p=(10,10,12)] is 2 and dev<=b.r = true
+Counted bots for cube: [n=4; w=2; p=(10,10,12)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=2; p=(12,12,10)] is 2 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=2; p=(12,12,10)] is 0 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=2; p=(12,12,10)] is 2 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=2; p=(12,12,10)] is 2 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=2; p=(12,12,10)] is 110 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=2; p=(12,12,10)] is 4 and dev<=b.r = true
+Counted bots for cube: [n=5; w=2; p=(12,12,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=2; p=(12,10,12)] is 2 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=2; p=(12,10,12)] is 2 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=2; p=(12,10,12)] is 2 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=2; p=(12,10,12)] is 2 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=2; p=(12,10,12)] is 110 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=2; p=(12,10,12)] is 4 and dev<=b.r = true
+Counted bots for cube: [n=4; w=2; p=(12,10,12)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=2; p=(10,12,12)] is 0 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=2; p=(10,12,12)] is 0 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=2; p=(10,12,12)] is 4 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=2; p=(10,12,12)] is 2 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=2; p=(10,12,12)] is 110 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=2; p=(10,12,12)] is 4 and dev<=b.r = true
+Counted bots for cube: [n=5; w=2; p=(10,12,12)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=2; p=(12,12,12)] is 2 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=2; p=(12,12,12)] is 0 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=2; p=(12,12,12)] is 2 and dev<=b.r = true
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=2; p=(12,12,12)] is 0 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=2; p=(12,12,12)] is 108 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=2; p=(12,12,12)] is 6 and dev<=b.r = false
+Counted bots for cube: [n=4; w=2; p=(12,12,12)]
+prioQ is now: [[n=5; w=2; p=(10,12,10)], [n=5; w=2; p=(12,12,10)], [n=5; w=2; p=(10,12,12)], [n=4; w=2; p=(12,10,10)], [n=4; w=2; p=(10,10,12)], [n=4; w=2; p=(12,10,12)], [n=4; w=4; p=(14,10,10)], [n=4; w=4; p=(10,14,10)], [n=4; w=2; p=(12,12,12)], [n=3; w=2; p=(10,10,10)], [n=3; w=4; p=(10,10,14)], [n=3; w=4; p=(14,14,10)], [n=3; w=4; p=(14,10,14)], [n=3; w=8; p=(18,10,10)], [n=2; w=4; p=(10,14,14)], [n=2; w=8; p=(10,18,10)], [n=2; w=8; p=(10,10,18)], [n=2; w=4; p=(14,14,14)], [n=1; w=8; p=(18,18,10)], [n=1; w=8; p=(18,10,18)], [n=1; w=8; p=(10,18,18)], [n=1; w=16; p=(26,10,10)], [n=1; w=16; p=(10,26,10)], [n=1; w=16; p=(10,10,26)], [n=1; w=8; p=(18,18,18)], [n=1; w=16; p=(26,26,10)], [n=1; w=16; p=(26,10,26)], [n=1; w=16; p=(10,26,26)], [n=1; w=32; p=(42,10,10)], [n=1; w=32; p=(10,42,10)], [n=1; w=32; p=(10,10,42)], [n=1; w=16; p=(26,26,26)], [n=1; w=32; p=(42,42,10)], [n=1; w=32; p=(42,10,42)], [n=1; w=32; p=(10,42,42)], [n=1; w=32; p=(42,42,42)]]
+
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=1; p=(10,12,10)] is 1 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=1; p=(10,12,10)] is 3 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=1; p=(10,12,10)] is 6 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=1; p=(10,12,10)] is 7 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=1; p=(10,12,10)] is 115 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=1; p=(10,12,10)] is 2 and dev<=b.r = true
+Counted bots for cube: [n=3; w=1; p=(10,12,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=1; p=(11,12,10)] is 2 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=1; p=(11,12,10)] is 2 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=1; p=(11,12,10)] is 5 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=1; p=(11,12,10)] is 6 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=1; p=(11,12,10)] is 114 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=1; p=(11,12,10)] is 3 and dev<=b.r = true
+Counted bots for cube: [n=2; w=1; p=(11,12,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=1; p=(10,13,10)] is 2 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=1; p=(10,13,10)] is 2 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=1; p=(10,13,10)] is 7 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=1; p=(10,13,10)] is 6 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=1; p=(10,13,10)] is 114 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=1; p=(10,13,10)] is 3 and dev<=b.r = true
+Counted bots for cube: [n=2; w=1; p=(10,13,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=1; p=(10,12,11)] is 0 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=1; p=(10,12,11)] is 2 and dev<=b.r = false
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=1; p=(10,12,11)] is 5 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=1; p=(10,12,11)] is 6 and dev<=b.r = false
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=1; p=(10,12,11)] is 114 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=1; p=(10,12,11)] is 3 and dev<=b.r = true
+Counted bots for cube: [n=3; w=1; p=(10,12,11)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=1; p=(11,13,10)] is 3 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=1; p=(11,13,10)] is 1 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=1; p=(11,13,10)] is 6 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=1; p=(11,13,10)] is 5 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=1; p=(11,13,10)] is 113 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=1; p=(11,13,10)] is 4 and dev<=b.r = true
+Counted bots for cube: [n=4; w=1; p=(11,13,10)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=1; p=(11,12,11)] is 1 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=1; p=(11,12,11)] is 1 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=1; p=(11,12,11)] is 4 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=1; p=(11,12,11)] is 5 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=1; p=(11,12,11)] is 113 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=1; p=(11,12,11)] is 4 and dev<=b.r = true
+Counted bots for cube: [n=5; w=1; p=(11,12,11)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=1; p=(10,13,11)] is 1 and dev<=b.r = true
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=1; p=(10,13,11)] is 1 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=1; p=(10,13,11)] is 6 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=1; p=(10,13,11)] is 5 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=1; p=(10,13,11)] is 113 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=1; p=(10,13,11)] is 4 and dev<=b.r = true
+Counted bots for cube: [n=5; w=1; p=(10,13,11)]
+deviation for bot: <10,12,12,r=2> and cube [n=0; w=1; p=(11,13,11)] is 2 and dev<=b.r = false
+deviation for bot: <12,14,12,r=2> and cube [n=0; w=1; p=(11,13,11)] is 0 and dev<=b.r = true
+deviation for bot: <16,12,12,r=4> and cube [n=0; w=1; p=(11,13,11)] is 5 and dev<=b.r = false
+deviation for bot: <14,14,14,r=6> and cube [n=0; w=1; p=(11,13,11)] is 4 and dev<=b.r = true
+deviation for bot: <50,50,50,r=200> and cube [n=0; w=1; p=(11,13,11)] is 112 and dev<=b.r = true
+deviation for bot: <10,10,10,r=5> and cube [n=0; w=1; p=(11,13,11)] is 5 and dev<=b.r = false
+Counted bots for cube: [n=3; w=1; p=(11,13,11)]
+prioQ is now: [[n=5; w=1; p=(11,12,11)], [n=5; w=1; p=(10,13,11)], [n=5; w=2; p=(12,12,10)], [n=5; w=2; p=(10,12,12)], [n=4; w=2; p=(12,10,10)], [n=4; w=2; p=(10,10,12)], [n=4; w=1; p=(11,13,10)], [n=4; w=2; p=(12,10,12)], [n=4; w=4; p=(14,10,10)], [n=4; w=4; p=(10,14,10)], [n=4; w=2; p=(12,12,12)], [n=3; w=2; p=(10,10,10)], [n=3; w=1; p=(10,12,10)], [n=3; w=1; p=(10,12,11)], [n=3; w=4; p=(10,10,14)], [n=3; w=1; p=(11,13,11)], [n=3; w=4; p=(14,14,10)], [n=3; w=4; p=(14,10,14)], [n=3; w=8; p=(18,10,10)], [n=2; w=1; p=(11,12,10)], [n=2; w=1; p=(10,13,10)], [n=2; w=4; p=(10,14,14)], [n=2; w=8; p=(10,18,10)], [n=2; w=8; p=(10,10,18)], [n=2; w=4; p=(14,14,14)], [n=1; w=8; p=(18,18,10)], [n=1; w=8; p=(18,10,18)], [n=1; w=8; p=(10,18,18)], [n=1; w=16; p=(26,10,10)], [n=1; w=16; p=(10,26,10)], [n=1; w=16; p=(10,10,26)], [n=1; w=8; p=(18,18,18)], [n=1; w=16; p=(26,26,10)], [n=1; w=16; p=(26,10,26)], [n=1; w=16; p=(10,26,26)], [n=1; w=32; p=(42,10,10)], [n=1; w=32; p=(10,42,10)], [n=1; w=32; p=(10,10,42)], [n=1; w=16; p=(26,26,26)], [n=1; w=32; p=(42,42,10)], [n=1; w=32; p=(42,10,42)], [n=1; w=32; p=(10,42,42)], [n=1; w=32; p=(42,42,42)]]
+
+Part 2: (11,12,11) with distance 34
+bot <10,12,12,r=2> in range: true
+bot <12,14,12,r=2> in range: false
+bot <16,12,12,r=4> in range: false
+bot <14,14,14,r=6> in range: false
+bot <50,50,50,r=200> in range: true
+bot <10,10,10,r=5> in range: true
