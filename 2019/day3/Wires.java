@@ -8,6 +8,7 @@ public class Wires {
     public ArrayList<Line2D.Float> wires,wires2;
     public ArrayList<Point2D.Float> intersections;
     public Point2D.Float startP;
+    public float minX,minY,maxX,maxY;
     
     public Wires(String fileName) {
 	// start timing
@@ -20,6 +21,8 @@ public class Wires {
 	intersections = new ArrayList<Point2D.Float>();	
 	lines = IO.readFile(fileName);
 	startP = new Point2D.Float(0,0);
+	minX = minY = Integer.MAX_VALUE;
+	maxX = maxY = -1*Integer.MAX_VALUE;
 
 	//parse the two wires and detect intersections
 	parseWire(lines.get(0), true);
@@ -138,18 +141,22 @@ public class Wires {
 	    case 'R' :
 		l = new Line2D.Float(new Point2D.Float(px,py),new Point2D.Float(px+len,py));
 		px += len;
+		if (px > maxX) maxX = px;
 		break;
 	    case 'L' :
 		l = new Line2D.Float(new Point2D.Float(px,py),new Point2D.Float(px-len,py));
 		px -= len;
+		if (px < minX) minX = px;
 		break;
 	    case 'U' :
 		l = new Line2D.Float(new Point2D.Float(px,py),new Point2D.Float(px,py-len));
 		py -= len;
+		if (py < minY) minY = py;
 		break;
 	    case 'D' :
 		l = new Line2D.Float(new Point2D.Float(px,py),new Point2D.Float(px,py+len));
 		py += len;
+		if (py > maxY) maxY = py;
 		break;
 	    default : break;
 	    }
@@ -171,5 +178,18 @@ public class Wires {
 
     public static void main(String[] args) {
 	Wires w = new Wires(args[0]);
+	StdDraw.setPenRadius(0.001);
+	StdDraw.setXscale(w.minX,w.maxX);
+	StdDraw.setYscale(w.minY,w.maxY);
+	StdDraw.setPenColor(StdDraw.BLUE);
+	for (Line2D.Float l : w.wires) {
+	    StdDraw.line(l.getX1(),l.getY1(),l.getX2(),l.getY2());
+	}
+	StdDraw.setPenColor(StdDraw.RED);
+	for (Line2D.Float l : w.wires2) {
+	    StdDraw.line(l.getX1(),l.getY1(),l.getX2(),l.getY2());
+	}
+
     }
 }
+
