@@ -104,6 +104,25 @@ public class Tree {
 	}
 	return node;
     }
+
+    public void incAllNumerics(int i) {
+	numeric += i;
+	for (Tree c : children) {
+	    c.incAllNumerics(i);
+	}
+    }
+
+    public int sumOfNumerics() {
+	int s = numeric;
+	for (Tree c : children) {
+	    s += c.sumOfNumerics();
+	}
+	return s;
+    }
+
+    public boolean isEmpty() {
+	return (element.equals("") && (numeric==0));
+    }
     
     public String toString() {
 	String res = "";
