@@ -51,14 +51,9 @@ public class Intcode {
     
     public void step() {
 
-	//IO.print("-----step----");
-	//IO.print("pos = " + curpos);
-	//IO.print(codes.toString());
-
 	long firstInstr = getCode(curpos);
 	// tens and ones = opcode
 	long opcode = firstInstr % 100;
-	//IO.print("opcode = " + opcode);
 	
 	if (opcode == 99) {
 	    state = HALTED;
@@ -73,9 +68,6 @@ public class Intcode {
 	long parmode3 = (firstInstr / (long) 10000) % 10;
 	long par1,par2,par3,res;
 	par1 = par2 = par3 = res = -1;
-	//IO.print("parmode1 = " + parmode1);
-	//IO.print("parmode2 = " + parmode2);
-	//IO.print("parmode3 = " + parmode3);
 	
 	//opcodes (with * is written to)
 	//1 addition par1 par2 *par3
@@ -102,6 +94,16 @@ public class Intcode {
 		par1 = getCode(relbase + getCode(curpos + 1));
 	    }
 	}
+
+	if (opcode == 3) {
+	    if (parmode1 <= 1) {
+		//position mode
+		par1 = getCode(curpos + 1);
+	    } else {
+		//parmode1 == 2 // relative mode
+		par1 = relbase + getCode(curpos + 1);
+	    }
+	}	    
 	
 	if (opcode == 1 || opcode == 2 || ((opcode >= 5) && (opcode <= 8)) ) {	    
 	    if (parmode2 == 0) {
@@ -117,9 +119,6 @@ public class Intcode {
 		par2 = getCode(relbase + getCode(curpos + 2));
 	    }
 	}
-	//IO.print("par1= " + par1);
-	//IO.print("par2= " + par2);
-
 	
 	if (opcode == 1 || opcode == 2 || opcode == 7 || opcode == 8) {
 	    if (parmode3 <= 1) {
@@ -127,12 +126,9 @@ public class Intcode {
 		par3 = getCode(curpos + 3);
 	    } else {
 		//parmode1 == 2 // relative mode
-		//given a relative base of 50, a relative mode parameter of -7 refers to memory address 50 + -7 = 43.
-		//The address a relative mode parameter refers to is itself plus the current relative base.
 		par3 = relbase + getCode(curpos + 3);
 	    }
 	}
-	//IO.print("par3= " + par3);
 	
 
 	switch((int) opcode) {
@@ -147,15 +143,6 @@ public class Intcode {
 	    curpos += 4;
 	    break;
 	case 3:
-	    if (parmode1 <= 1) {
-		//position mode
-		par1 = getCode(curpos + 1);
-	    } else {
-		//parmode1 == 2 // relative mode
-		//given a relative base of 50, a relative mode parameter of -7 refers to memory address 50 + -7 = 43.
-		//The address a relative mode parameter refers to is itself plus the current relative base.
-		par1 = relbase + getCode(curpos + 1);
-	    }
 	    setCode(par1,input); 
 	    curpos += 2;
 	    break;
