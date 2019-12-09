@@ -2,8 +2,6 @@ import java.io.*;
 import java.util.*;
 import util.*;
 import java.time.*;
-//ADD: long integer support
-//ADD: out of bounds code list
 
 public class Intcode {
 
