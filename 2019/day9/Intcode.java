@@ -16,8 +16,6 @@ public class Intcode {
 
     
     public Intcode(ArrayList<Long> c, long inp) {
-
-	//deep copy of codes
 	long it = 0;
         codes = new HashMap<Long,Long>();
 	for (Long i : c) {
@@ -43,6 +41,29 @@ public class Intcode {
 
     public void setCode(long pos, long l) {
 	codes.put(pos,l);
+    }
+
+    public long getLiteral(long parmode, long pos) {
+	if (parmode <= 1) {
+	    //position mode (or immediate, should not occur)
+	    return getCode(pos);
+	} else {
+	    //relative mode
+	    return relbase + getCode(pos);
+	}
+    }
+
+    public long getInterpreted(long parmode, long pos) {
+	if (parmode == 0) {
+	    //position mode
+	    return getCode(getCode(pos));
+	} else if (parmode == 1) {
+	    //immediate mode
+	    return getCode(pos);
+	} else {
+	    //relative mode
+	    return getCode(relbase + getCode(pos));
+	}
     }
     
     public void step() {
@@ -76,69 +97,37 @@ public class Intcode {
 	//8 equals par1 par2 *par3
 	//9 modify relative base par1
 
-	if (opcode != 3) {
-	    if (parmode1 == 0) {
-		//position mode
-		par1 = getCode(getCode(curpos + 1));
-	    } else if (parmode1 == 1) {
-		//immediate mode
-		par1 = getCode(curpos+1);
-	    } else {
-		//parmode1 == 2 // relative mode
-		par1 = getCode(relbase + getCode(curpos + 1));
-	    }
-	}
-
-	if (opcode == 3) {
-	    if (parmode1 <= 1) {
-		//position mode
-		par1 = getCode(curpos + 1);
-	    } else {
-		//parmode1 == 2 // relative mode
-		par1 = relbase + getCode(curpos + 1);
-	    }
-	}	    
+	par1 = (opcode == 3) ? getLiteral(parmode1, curpos + 1) : getInterpreted(parmode1, curpos+1);
 	
 	if (opcode == 1 || opcode == 2 || ((opcode >= 5) && (opcode <= 8)) ) {	    
-	    if (parmode2 == 0) {
-		//position mode
-		par2 = getCode(getCode(curpos + 2));
-	    } else if (parmode2 == 1) {
-		//immediate mode
-		par2 = getCode(curpos + 2);
-	    } else {
-		//parmode2 == 2 // relative mode
-		par2 = getCode(relbase + getCode(curpos + 2));
-	    }
+	    par2 = getInterpreted(parmode2, curpos+2);
 	}
 	
 	if (opcode == 1 || opcode == 2 || opcode == 7 || opcode == 8) {
-	    if (parmode3 <= 1) {
-		//position mode
-		par3 = getCode(curpos + 3);
-	    } else {
-		//parmode1 == 2 // relative mode
-		par3 = relbase + getCode(curpos + 3);
-	    }
+	    par3 = getLiteral(parmode3, curpos + 3);
 	}
 	
 
 	switch((int) opcode) {
 	case 1:
+	    //addition
 	    res = (par1 + par2);
 	    setCode(par3, res);
 	    curpos += 4;
 	    break;
 	case 2:
+	    //multiplication
 	    res = (par1 * par2);
 	    setCode(par3, res);
 	    curpos += 4;
 	    break;
 	case 3:
+	    //input
 	    setCode(par1,input); 
 	    curpos += 2;
 	    break;
 	case 4:
+	    //output
 	    output = par1;
 	    IO.print("OUTPUT => " + output);
 	    curpos += 2;
@@ -160,16 +149,19 @@ public class Intcode {
 	    }
 	    break;
 	case 7:
+	    //less than
 	    res = (par1 < par2) ? 1 : 0;
 	    setCode(par3,res);
 	    curpos += 4;
 	    break;
 	case 8:
+	    //equals
 	    res = (par1 == par2) ? 1 : 0;
 	    setCode(par3,res);
 	    curpos += 4;
 	    break;
 	case 9:
+	    //modify relative base
 	    relbase += par1;
 	    curpos += 2;
 	    break;
