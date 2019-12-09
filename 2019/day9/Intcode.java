@@ -5,10 +5,8 @@ import java.time.*;
 
 public class Intcode {
 
-    //0: running, 1: waiting for input, 2: outputting, 3: halted
     public static final int RUNNING = 0;
-    public static final int OUTPUTWAIT = 1;
-    public static final int HALTED = 2;
+    public static final int HALTED = 1;
     
     public HashMap<Long,Long> codes;
     public long curpos,relbase;
@@ -87,8 +85,6 @@ public class Intcode {
 		par1 = getCode(curpos+1);
 	    } else {
 		//parmode1 == 2 // relative mode
-		//given a relative base of 50, a relative mode parameter of -7 refers to memory address 50 + -7 = 43.
-		//The address a relative mode parameter refers to is itself plus the current relative base.
 		par1 = getCode(relbase + getCode(curpos + 1));
 	    }
 	}
@@ -112,8 +108,6 @@ public class Intcode {
 		par2 = getCode(curpos + 2);
 	    } else {
 		//parmode2 == 2 // relative mode
-		//given a relative base of 50, a relative mode parameter of -7 refers to memory address 50 + -7 = 43.
-		//The address a relative mode parameter refers to is itself plus the current relative base.
 		par2 = getCode(relbase + getCode(curpos + 2));
 	    }
 	}
