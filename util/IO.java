@@ -25,6 +25,13 @@ public class IO {
 	return lines;
     }
 
+    public static int getInt() {
+	Scanner sc = new Scanner(System.in);
+	System.out.print("Input int: ");
+	int i = sc.nextInt();
+	IO.print("");
+	return i;
+    }
     public static void print(String s) {
 	System.out.println(s);
     }
