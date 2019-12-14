@@ -15,14 +15,16 @@ public class Reactions {
     public Stack<String> excess;
     
     public Reactions(String fileName) {
+	//parse input
 	lines = new ArrayList<String>();
 	lines = IO.readFile(fileName);
 	parseInput();
 
+	//part 1: how many ore for 1 fuel
 	BigInteger oneFuel = findOre(BigInteger.ONE);
 	IO.print("Part 1: " + oneFuel.toString());
 
-	//binary search
+	//binary search to find fuel produced by 1 trillion ore
         BigInteger bound = new BigInteger("1000000000000");
         BigInteger low = bound.divide(oneFuel);
         BigInteger high = low.multiply(new BigInteger("2"));
@@ -49,7 +51,9 @@ public class Reactions {
 	for (String s : inventory.keySet()) {
 	    curInventory.put(s,inventory.get(s));
 	}
+	//add desired amount of fuel
 	curInventory.put("FUEL",new BigInteger(""+fuel));
+	///create processing queue
 	toProcess = new Stack<String>();
 	toProcess.push("FUEL");
 	
@@ -61,19 +65,23 @@ public class Reactions {
 	    BigInteger curInvOut = curInventory.get(s);
 	    BigInteger reactionAmount = r.output.amount;
 
+	    //compute number of times to apply reaction (=BigInteger.ceiling)
 	    BigInteger cur = curInvOut;
 	    BigInteger times = cur.divide(reactionAmount);
 	    if (!cur.remainder(reactionAmount).equals(BigInteger.ZERO)) {
 		times = times.add(BigInteger.ONE);
 	    }
+
+	    //update inventory for output of reaction
 	    BigInteger temp = cur.subtract(times.multiply(reactionAmount));
 	    curInventory.put(s,temp);
-	    
+
+	    //add excess elements to be processed later
 	    if (temp.compareTo(BigInteger.ZERO) < 0) {
 		if (!excess.contains(s)) excess.push(s);
 	    }
 
-	    //add input of reaction to curInventory
+	    //add input of reaction (*number of times) to curInventory
 	    for (Pair p : r.inputs) {
 		if (!p.name.equals("ORE")) {
 		    if (!toProcess.contains(p.name)) {
@@ -87,6 +95,7 @@ public class Reactions {
 	    }
 	}
 
+	//process excess / surplus of elements
 	while (excess.size() > 0) {
 	    String s = excess.remove(0);
 	    Reaction r = findReaction(s);
@@ -127,8 +136,8 @@ public class Reactions {
         excess = new Stack<String>();
 	reactions = new ArrayList<Reaction>();
 	inventory.put("ORE",BigInteger.ZERO);
+
 	//parse reactions and find rule for fuel
-	
 	for(String line : lines) {
 	    String[] ins = line.split(" => ")[0].split(", ");
 	    String out = line.split(" => ")[1];
@@ -157,6 +166,5 @@ public class Reactions {
 
     public static void main(String[] args) {
 	Reactions r = new Reactions(args[0]);
-
      }
 }
