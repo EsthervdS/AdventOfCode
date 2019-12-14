@@ -10,6 +10,7 @@ public class Reactions {
     public ArrayList<String> lines;
     public ArrayList<Reaction> reactions;
     public HashMap<String,BigInteger> inventory;
+    public HashMap<String,BigInteger> curInventory;
     public Stack<String> toProcess;
     public Stack<String> excess;
     
@@ -20,64 +21,70 @@ public class Reactions {
 
 	BigInteger oneFuel = findOre(BigInteger.ONE);
 	IO.print("Part 1: " + oneFuel.toString());
+
 	//binary search
-	BigInteger bound = new BigInteger("1000000000000");
+        BigInteger bound = new BigInteger("1000000000000");
         BigInteger low = bound.divide(oneFuel);
         BigInteger high = low.multiply(new BigInteger("2"));
 
 	while (low.compareTo(high) < 0) {
-	    IO.print("Interval [" + low + "," + high + "]");
-	    BigInteger mid = low.add(high).add(BigInteger.ONE).divide(new BigInteger("2"));
+ 	    BigInteger mid = low.add(high).add(BigInteger.ONE).divide(new BigInteger("2"));
 
-	    //1000000000000
-	    //6260048108
-
-	    IO.print("Computing ores for fuel = " + mid); 
 	    BigInteger res = findOre(mid);
-	    IO.print("Result = " + res);
 	    if (res.compareTo(bound) < 0) {
 		low = mid;
 	    } else {
 		high = mid.subtract(BigInteger.ONE);
 	    }
 	}
-	IO.print("Part 2: " + low);
+	IO.print("Part 2: " + low.toString());
+	
+	
     }
 
     public BigInteger findOre(BigInteger fuel) {
 	
-	parseInput();
-	inventory.put("FUEL",fuel);
+	//deep copy inventory
+	curInventory = new HashMap<String,BigInteger>();
+	for (String s : inventory.keySet()) {
+	    curInventory.put(s,inventory.get(s));
+	}
+	curInventory.put("FUEL",new BigInteger(""+fuel));
+	toProcess = new Stack<String>();
+	toProcess.push("FUEL");
 	
 	while (toProcess.size() > 0) {
 	    String s = toProcess.remove(0);
 	    Reaction r = findReaction(s);
 
 	    //use output of reaction
-	    BigInteger curInvOut = inventory.get(s);
-	    int reactionAmount = r.output.amount;
-	    int times = 0;
-	    BigInteger temp = inventory.get(s);
-	    while (temp.compareTo(BigInteger.ZERO) > 0) {
-		times++;
-		temp = temp.subtract(new BigInteger(reactionAmount+""));
+	    BigInteger curInvOut = curInventory.get(s);
+	    BigInteger reactionAmount = r.output.amount;
+
+	    BigInteger cur = curInvOut;
+	    BigInteger times = cur.divide(reactionAmount);
+	    if (!cur.remainder(reactionAmount).equals(BigInteger.ZERO)) {
+		times = times.add(BigInteger.ONE);
 	    }
-	    inventory.put(s,temp);
+	    BigInteger temp = cur.subtract(times.multiply(reactionAmount));
+	    curInventory.put(s,temp);
 	    
 	    if (temp.compareTo(BigInteger.ZERO) < 0) {
 		if (!excess.contains(s)) excess.push(s);
 	    }
 
-	    //add input of reaction to inventory
+	    //add input of reaction to curInventory
 	    for (Pair p : r.inputs) {
 		if (!p.name.equals("ORE")) {
-		    if (!toProcess.contains(p.name)) toProcess.push(p.name);
+		    if (!toProcess.contains(p.name)) {
+			toProcess.push(p.name);
+		    }
 		}
-		    
-	        BigInteger curInv = inventory.get(p.name);
-		inventory.put(p.name,curInv.add(new BigInteger(""+p.amount*times)));
+		
+	        BigInteger curInv = curInventory.get(p.name);
+		BigInteger mul = p.amount.multiply(new BigInteger(""+times));
+		curInventory.put(p.name,curInv.add(mul));
 	    }
-	    
 	}
 
 	while (excess.size() > 0) {
@@ -85,21 +92,21 @@ public class Reactions {
 	    Reaction r = findReaction(s);
 	    if (r.inputs.size() == 1 && r.inputs.get(0).name.equals("ORE")) {
 
-		int amount = Math.abs(r.output.amount);
-		int oreAmount = Math.abs(r.inputs.get(0).amount);
+	        BigInteger amount = r.output.amount;
+	        BigInteger oreAmount = r.inputs.get(0).amount;
 		int times = 0;
-		BigInteger temp = inventory.get(s);
-		BigInteger ores = inventory.get("ORE");
-		while (temp.abs().compareTo(new BigInteger(""+amount)) > 0) {
-		    temp.add(new BigInteger(""+amount));
-		    ores.subtract(new BigInteger(""+oreAmount));
+	        BigInteger temp = curInventory.get(s);
+	        BigInteger ores = curInventory.get("ORE");
+		while (temp.abs().compareTo(amount) > 0) {
+		    temp = temp.add(amount);
+		    ores = ores.subtract(oreAmount);
 		}
-		inventory.put(s,temp);
-		inventory.put("ORE",ores);
+		curInventory.put(s,temp);
+		curInventory.put("ORE",ores);
 
 	    }
 	}
-	return inventory.get("ORE");
+	return curInventory.get("ORE");
     }
     
     public Reaction findReaction(String s) {
