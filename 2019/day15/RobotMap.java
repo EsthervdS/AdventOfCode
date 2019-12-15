@@ -2,6 +2,8 @@ import java.io.*;
 import java.util.*;
 import util.*;
 import java.time.*;
+import java.lang.*;
+
 public class RobotMap {
 
     public static int NORTH = 1;
@@ -36,8 +38,18 @@ public class RobotMap {
 	//input 0 is not correct!
 	
 	init(0,0);
+	try {
+            Thread.sleep(2000);
+	} catch (Exception e) {
+            System.out.println(e);
+	}
 	buildMap();
 	IO.print("Part 1: " + part1);
+	try {
+            Thread.sleep(2000);
+	} catch (Exception e) {
+            System.out.println(e);
+	}
 	init(curX,curY);
 	buildMap();
 	IO.print("Part 2: " + maxDist);
@@ -45,6 +57,7 @@ public class RobotMap {
     }
 
     public void init(int x, int y) {
+	initCanvas();
 	minX = minY = Integer.MAX_VALUE;
 	maxX = maxY = -1*Integer.MAX_VALUE;
 	maxDist = -1*Integer.MAX_VALUE;
@@ -65,6 +78,14 @@ public class RobotMap {
 	grid.put(index(x,y),Location.OPEN);
         administration.put(index(x,y),root);
 	toProcess.add(root);
+    }
+
+    public void initCanvas() {
+	StdDraw.enableDoubleBuffering();
+	StdDraw.setPenRadius(0.001);
+	StdDraw.setXscale(-40,40);
+	StdDraw.setYscale(-40,40);;
+	StdDraw.setPenColor(StdDraw.BLACK);
     }
 
     public void buildMap() {
@@ -94,7 +115,7 @@ public class RobotMap {
 	    }
 	    
 	    cur.color = BLACK;
-	    printGrid();
+	    drawGrid();
 	}
 
     }
@@ -264,6 +285,42 @@ public class RobotMap {
 	IO.print("");
     }
     
+    public void drawGrid() {
+	StdDraw.clear();
+	for(int j=minY; j<=maxY; j++) {
+	    for(int i=minX; i<=maxX; i++) {
+		if (i==root.x && j==root.y) {
+		    StdDraw.setPenColor(StdDraw.BOOK_RED);
+		    StdDraw.filledCircle(i,j,0.3);
+		    StdDraw.setPenColor(StdDraw.BLACK);		    
+		} else {
+		    Integer element = grid.get(index(i,j));
+		    //IO.print(loc.toString());
+		    if (! (element == null) ) {
+			if (element == Location.WALL) {
+			    
+			    StdDraw.filledSquare(i,j,0.5);
+			} else if (element == Location.OPEN) {
+			    StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
+			    StdDraw.filledSquare(i,j,0.5);			    
+			    StdDraw.setPenColor(StdDraw.BLACK);
+			} else if (element == Location.TARGET) {
+			    StdDraw.setPenColor(StdDraw.YELLOW);
+			    StdDraw.filledCircle(i,j,0.5);			    
+			    StdDraw.setPenColor(StdDraw.BLACK);
+			} else if (element == 3) {
+			    StdDraw.setPenColor(StdDraw.GREEN);
+			    StdDraw.filledSquare(i,j,0.5);			    
+			    StdDraw.setPenColor(StdDraw.BLACK);
+			}
+		    }
+		}
+			   
+	    }
+	}
+	StdDraw.show();
+    }
+
     public static void main(String[] args) {
 	RobotMap r = new RobotMap(args[0]);
      }
