@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 import util.*;
 
-public class Doors {
+public class Doors2 {
 
     public final static int WALL = 0;
     public final static int OPEN = 1;
@@ -15,29 +15,49 @@ public class Doors {
     public static HashMap<Character,Coord> doors;
     public int[][] grid;
     public int cols,rows;
-    public static Coord entrance;
+    public static Coord[] entrances;
     public HashMap<Integer,Location> administration;
     public PriorityQueue<Location> toProcess;
     public HashMap<Integer,Character> allLocs;
     public ArrayList<Pair> distances;
     public HashMap<String,Integer> cache;
     
-    public Doors(String fileName) {
+    public Doors2(String fileName) {
 	lines = new ArrayList<String>();
 	lines = IO.readFile(fileName);
 
 	init();
+	//create 4 subgrids
+	grid[40][40] = grid[39][40] = grid[41][40] = grid[40][39] = grid[40][41] = WALL;
+	grid[39][39] = grid[39][41] = grid[41][39] = grid[41][41] = ENTRANCE;
 
-	createLocationsMap();	
+	entrances = new Coord[4];
+	entrances[0] = new Coord(39,39);
+	entrances[1] = new Coord(39,41);
+	entrances[2] = new Coord(41,39);
+	entrances[3] = new Coord(41,41);
+
+	createLocationsMap();
 	computeDistances();
-        HashSet<Character> keysCollected = new HashSet<Character>();
-	ArrayList<Character> path = new ArrayList<Character>();
-	path.add('@');
 
-	IO.print("Part 1: " + shortestDistance(keysCollected,path));
+        HashSet<Character> keysCollected = new HashSet<Character>();
+        HashSet<Character> visited = new HashSet<Character>();
+        visited.add('!');
+        visited.add('@');
+        visited.add('$');
+        visited.add('%');
+
+        Character[] curLocations = new Character[4];
+        curLocations[0] = '!';
+        curLocations[1] = '@';
+        curLocations[2] = '$';
+        curLocations[3] = '%';
+	
+
+	IO.print("Part 2: " + shortestDistance(keysCollected,visited,curLocations));
     }
 
-    public int shortestDistance(HashSet<Character> keysCollected, ArrayList<Character> path) {
+    public int shortestDistance(HashSet<Character> keysCollected, HashSet<Character> visited, Character[] currentLocations) {
 
 	int minDist = Integer.MAX_VALUE;
 	int res = minDist;
@@ -46,35 +66,46 @@ public class Doors {
 	    res = 0;
 	} else {
 
-	    //from which key are we searching
-	    Character c = path.get(path.size()-1);
-
-	    //check cache
-	    String cacheKey = c+"=>";
-	    for (Character k : keysCollected) cacheKey+=k;	    
+	    String cacheKey = "";
+	    for (int i=0; i<4; i++) cacheKey += currentLocations[i];
+	    cacheKey += "=>";
+	    //from which keys are we searching
+	    for (Character k : keysCollected) cacheKey += k;
+	    
 	    if (cache.containsKey(cacheKey)) {
-		res = cache.get(cacheKey);
-		
+		minDist = cache.get(cacheKey);
 	    } else {
-		ArrayList<Pair> options = getReachableKeys(c,keysCollected,path);
+		ArrayList<Pair> options = new ArrayList<Pair>();
+		options.addAll(getReachableKeys(currentLocations[0],keysCollected,visited));
+		options.addAll(getReachableKeys(currentLocations[1],keysCollected,visited));
+		options.addAll(getReachableKeys(currentLocations[2],keysCollected,visited));
+		options.addAll(getReachableKeys(currentLocations[3],keysCollected,visited));
+		
 		for (Pair p : options) {
-
-		    HashSet<Character> newKeys = new HashSet<Character>();
-		    newKeys.addAll(keysCollected);
-		    newKeys.addAll(p.keysInBetween());
-		    
-		    ArrayList<Character> newPath = new ArrayList<Character>();
-		    newPath.addAll(path);
-		    addKeys(newPath,p);
-		    //IO.print("Checking new path: " + newPath.toString());
-		    int dist = p.distance + shortestDistance(newKeys,newPath);
-		    if (dist < minDist) minDist = dist;
-
+		    if (p.distance > 0) {
+			HashSet<Character> newKeys = new HashSet<Character>();
+			newKeys.addAll(keysCollected);
+			newKeys.addAll(p.keysInBetween());
+			
+			Character[] newLocations = new Character[4];
+			for (int i=0; i<4; i++) {
+			    if (currentLocations[i] == p.first) {
+				newLocations[i] = p.second;
+			    } else {
+				newLocations[i] = currentLocations[i];
+			    }
+			}
+			
+			HashSet<Character> newVisited = new HashSet<Character>();
+			newVisited.addAll(visited);
+			addKeys(newVisited,p);
+			int distForThisPair = p.distance + shortestDistance(newKeys,newVisited,newLocations);
+			if (distForThisPair < minDist) minDist = distForThisPair;
+		    }
 		}
-		res = minDist;
 		cache.put(cacheKey,minDist);
 	    }
-
+	    res = minDist;
 	}
 	return res;
     }
@@ -98,7 +129,6 @@ public class Doors {
 		    grid[i][j] = OPEN;
 		} else if (c == '@') {
 		    grid[i][j] = ENTRANCE;
-		    entrance = new Coord(i,j);
 		} else if (Character.isLetter(c) && Character.isLowerCase(c)) {
 		    grid[i][j] = KEY;
 		    keys.put(c,new Coord(i,j));
@@ -114,6 +144,7 @@ public class Doors {
     public void computeDistances() {
 	cache = new HashMap<String,Integer>();
 	distances = new ArrayList<Pair>();
+
 	for (int i=0; i<allLocs.size(); i++) {
 	    for (int j=i+1; j<allLocs.size(); j++) {
 		//unique pairs
@@ -136,15 +167,15 @@ public class Doors {
 	return (new Pair(' ',' '));
     }
 
-    public void addKeys(ArrayList<Character> path, Pair next) {
+    public void addKeys(HashSet<Character> visited, Pair next) {
 	for (Character key : next.keysInBetween()) {
-	    if (!path.contains(key)) {
-		path.add(key);
+	    if (!visited.contains(key)) {
+	        visited.add(key);
 	    }
 	}
     }
     
-    public ArrayList<Pair> getReachableKeys(char c, HashSet<Character> keys, ArrayList<Character> path) {
+    public ArrayList<Pair> getReachableKeys(char c, HashSet<Character> keys, HashSet<Character> visited) {
 	ArrayList<Pair> temp = new ArrayList<Pair>();
 	for (Pair p : distances) {
 	    if (p.first == c || p.second == c) {
@@ -157,8 +188,7 @@ public class Doors {
 		    q.reverseInBetween();
 		}
 		q.addKeys(keys);
-		
-		if (!path.contains(q.second) && isKey(q.second) && q.isFeasible()) {
+		if (!visited.contains(q.second) && isKey(q.second) && q.isFeasible()) {
 		    temp.add(q);
 		}
 	    }
@@ -216,9 +246,9 @@ public class Doors {
     }
 
     public void createLocationsMap() {
+
 	allLocs = new HashMap<Integer,Character>();
-	allLocs.put(0,'@');
-	int k = 1;
+	int k = 0;
 	for (Character door : doors.keySet()) {
 	    allLocs.put(k,door);
 	    k++;
@@ -227,6 +257,14 @@ public class Doors {
 	    allLocs.put(k,key);
 	    k++;
 	}
+	allLocs.put(k,'!');
+	k++;
+	allLocs.put(k,'@');
+	k++;
+	allLocs.put(k,'$');
+	k++;
+	allLocs.put(k,'%');
+
     }
 
     public void processNeighbour(Location loc, Location cur) {	
@@ -259,8 +297,14 @@ public class Doors {
 
     public static Coord findLocation(char c) {
 	Coord res = new Coord(-1,-1);
-	if (c == '@') {
-	    res = entrance;
+	if (c == '!') {
+	    res = entrances[0];
+	} else if (c == '@') {
+	    res = entrances[1];
+	} else if (c == '$') {
+	    res = entrances[2];
+	} else if (c == '%') {
+	    res = entrances[3];
 	} else if (Character.isLowerCase(c)) {
 	    res = keys.get(c);
 	} else if (Character.isUpperCase(c)) {
@@ -338,7 +382,7 @@ public class Doors {
     
 
     public static void main(String[] args) {
-	Doors d = new Doors(args[0]);
+	Doors2 d = new Doors2(args[0]);
     }
 
 }
