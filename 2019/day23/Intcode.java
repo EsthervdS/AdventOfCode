@@ -14,10 +14,9 @@ public class Intcode {
     public long curpos,relbase;
     public ArrayList<Long> input;
     public long output;
-    public long netWorkAddress;
+    public long id;
     public long inputAddress;
     public int state,outputcount;
-    public String id;
     public boolean displayOutput;
     public boolean ASCIIOutput;
     public boolean isIdle;
@@ -34,7 +33,7 @@ public class Intcode {
 	}
 	input = new ArrayList<Long>();
 	curpos = relbase = 0;
-	netWorkAddress = -1;
+	id = -1;
 	state = RUNNING;
 	isIdle = false;
     }
@@ -49,7 +48,7 @@ public class Intcode {
 	    it++;
 	}
 	input = new ArrayList<Long>();
-	netWorkAddress = -1;
+	id = -1;
 	curpos = relbase = 0;
 	state = RUNNING;
 	isIdle = false;
@@ -103,7 +102,7 @@ public class Intcode {
 	} else {
 	    inps += "empty";
 	}
-	IO.print("COMPUTER " + netWorkAddress + " || state = " + state + " | input = " + inps + " | output = " + output);
+	IO.print("COMPUTER " + id + " || state = " + state + " | input = " + inps + " | output = " + output);
     }
 
     public void setInput() {
@@ -114,7 +113,7 @@ public class Intcode {
 	    Long i = input.remove(0);
 	    setCode(inputAddress,i);
 	}
-	if (netWorkAddress == -1) netWorkAddress = getCode(inputAddress); 
+	if (id == -1) id = getCode(inputAddress); 
     }
 
     public void step() {
@@ -227,7 +226,7 @@ public class Intcode {
 	    curpos += 2;
 	    break;
 	default:
-	    IO.print("Computer " + netWorkAddress + " encountered wrong opcode: " + opcode);
+	    IO.print("Computer " + id + " encountered wrong opcode: " + opcode);
 	    break;
 	}
     }

@@ -44,7 +44,7 @@ public class Network {
 	cur.runUntil();
 
 	if (cur.state == Intcode.OUTPUTWAIT) {
-	    long addr = cur.netWorkAddress;
+	    long addr = cur.id;
 	    ArrayList<Long> curOutputs = outputs.get(addr);
 	    curOutputs.add(cur.output);
 	    
