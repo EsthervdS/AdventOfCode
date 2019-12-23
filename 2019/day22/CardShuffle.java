@@ -6,7 +6,7 @@ import java.time.*;
 public class CardShuffle {
 
     public ArrayList<String> lines;
-    public int N = 10007;
+    public int N = 10;//10007;
     public int[] cards;
     public int id2019;
 
@@ -38,7 +38,7 @@ public class CardShuffle {
 	    //deal with increment 9
 	    //deal into new stack
 	    String[] ss = line.split(" ");
-	    //IO.print(line);
+	    IO.print(line);
 	    if (ss[0].equals("cut")) {
 		int n = Integer.parseInt(ss[ss.length-1]);
 		cards = cut(n);
@@ -48,7 +48,7 @@ public class CardShuffle {
 	    } else {
 		cards = dealNew();
 	    }
-	    //printCards();
+	    printCards();
 	}
 
     }
