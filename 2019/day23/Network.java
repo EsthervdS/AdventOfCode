@@ -11,12 +11,15 @@ public class Network {
     public HashMap<Long,ArrayList<Long>> outputs;
     public long natX, natY, lastNatY;
     public boolean part1,part2;
+    public long millis;
     
     public Network(String fileName) {
 	lines = new ArrayList<String>();
 	lines = IO.readFile(fileName);
 	part1 = part2 = false;
 
+        millis = System.currentTimeMillis();
+	
 	init();
 
 	while (!part2) {
@@ -70,6 +73,7 @@ public class Network {
 	if (destination == 255) {
 	    if (!part1) {
 		IO.print("Part 1: " + y);
+		IO.print("Part 1 computed in " + (System.currentTimeMillis() - millis) + "ms");
 		part1 = true;
 	    }
 	    natX = x;
@@ -78,6 +82,7 @@ public class Network {
 	if (destination == 0) {
 	    if (lastNatY == natY) {
 		IO.print("Part 2: " + y);
+		IO.print("Part 2 computed in " + (System.currentTimeMillis() - millis) + "ms");
 		part2 = true;
 	    }
 	    lastNatY = y;
