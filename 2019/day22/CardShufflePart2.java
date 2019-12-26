@@ -2,13 +2,13 @@ import util.*;
 import java.util.*;
 import java.math.*;
 
-public class CardShuffle3 {
+public class CardShufflePart2 {
 
 
     public ArrayList<String> lines;
     public BigInteger deckSize,times;
 
-    public CardShuffle3(String fileName) {
+    public CardShufflePart2(String fileName) {
 	lines = new ArrayList<String>();
 	lines = IO.readFile(fileName);
 	
@@ -25,15 +25,11 @@ public class CardShuffle3 {
     private BigInteger seekPosition(int position) {
 	var calc = new BigInteger[] {bigint(1), bigint(0)};
 	var res = processReverseInput(calc);
-	for (BigInteger bi : res) {
-	    IO.print(bi.toString());
-	}
 	var pow = res[0].modPow(times, deckSize);
 	return pow.multiply(bigint(position)).add(res[1].multiply(pow.add(deckSize).subtract(bigint(1))).multiply(res[0].subtract(bigint(1)).modPow(deckSize.subtract(bigint(2)), deckSize))).mod(deckSize);
     }
     
-    public BigInteger[] processReverseInput(BigInteger[] b) {
-	BigInteger[] res = new BigInteger[2];
+    public BigInteger[] processReverseInput(BigInteger[] res) {
 	
 	for (int i=lines.size()-1; i>=0; i--) {
 	    String line = lines.get(i);
@@ -42,14 +38,14 @@ public class CardShuffle3 {
 	    if (ss[0].equals("cut")) {
 
 		int n = Integer.parseInt(ss[ss.length-1]);
-		res[0] = b[0];
-		res[1] = b[1].add(bigint(n));
+		res[0] = res[0];
+		res[1] = res[1].add(bigint(n));
 
 	    } else if (ss[1].equals("with")) {
 
 		int n = Integer.parseInt(ss[ss.length-1]);
 	        BigInteger p = bigint(n).modPow(deckSize.subtract(bigint(2)), deckSize);
-		for(int k=0; k<2; k++) res[k] = b[k].multiply(p);
+		for(int k=0; k<2; k++) res[k] = res[k].multiply(p);
 		
 	    } else {
 
@@ -76,7 +72,7 @@ public class CardShuffle3 {
     }
     
     public static void main(String[] args) {
-	CardShuffle3 cs = new CardShuffle3(args[0]);
+	CardShufflePart2 cs = new CardShufflePart2(args[0]);
      }
 
 }

@@ -32,6 +32,15 @@ public class IO {
 	IO.print("");
 	return i;
     }
+
+    public static String getLine(String prompt) {
+	Scanner sc = new Scanner(System.in);
+	System.out.print(prompt);
+        String s = sc.nextLine();
+	IO.print("");
+	return s;
+    }
+
     public static void print(String s) {
 	System.out.println(s);
     }
