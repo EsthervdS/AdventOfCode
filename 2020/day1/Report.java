@@ -37,7 +37,7 @@ public class Report {
 	boolean found = false;
 	int res = -1;
 	for (int i=0;i<ints.size();i++) {
-	    for (int j=0;j<ints.size();j++) {
+	    for (int j=i+1;j<ints.size();j++) {
 		int f = ints.get(i);
 		int s = ints.get(j);
 		int cur = f + s;
