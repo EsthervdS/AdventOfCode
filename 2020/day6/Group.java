@@ -10,9 +10,7 @@ class Group {
 
 	for (String i : input) {
 	    HashSet<Character> cur = new HashSet<Character>();
-	    for (int k=0; k<i.length(); k++) {
-		cur.add(i.charAt(k));
-	    }
+	    for (int k=0; k<i.length(); k++) cur.add(i.charAt(k));
 	    questions.add(cur);
 	}
     }
