@@ -79,7 +79,14 @@ public class Airplane {
     
     public static void main(String[] args) {
 	Airplane a = new Airplane(args[0]);
+	long timeNano = System.nanoTime(); 
+	
+	IO.print("Parse input: " + (System.nanoTime() - timeNano)/1000  + "µs");
+	timeNano = System.nanoTime(); 
 	IO.print("Part 1: " + a.part1());
+	IO.print("Part 1: " + (System.nanoTime() - timeNano)/1000 + "µs");
+	timeNano = System.nanoTime();
 	IO.print("Part 2: " + a.part2());
+	IO.print("Part 2: " + (System.nanoTime() - timeNano)/1000 + "µs");
     }
 }
