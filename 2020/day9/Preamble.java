@@ -9,6 +9,7 @@ public class Preamble {
     public ArrayList<String> lines;
     public ArrayList<Long> numbers;
     public int pSize;
+    public long part1;
 
     
     public Preamble(String fileName, int k) {
@@ -20,20 +21,47 @@ public class Preamble {
     }
 
     public long part1() {
-
+	//find first number that is not a sum of a pair of numbers from the preamble
 	ArrayList<Long> sums = allSums(0);
 	int pos = pSize;
 	while (sums.contains(numbers.get(pos))) {
 	    pos++;
 	    sums = allSums(pos-pSize);
 	}
-	return numbers.get(pos);
+	part1 = numbers.get(pos);
+	return part1;
     }
 
     public long part2() {
-	return -1;
+	//find consecutive list of numbers that sums up to $part1
+	boolean found = false;
+	ArrayList<Long> foundInterval = new ArrayList<Long>();
+	int startpos = 0;
+	while (!found) {
+	    int i=0;
+	    while (sum(foundInterval) < part1) {
+		foundInterval.add(numbers.get(startpos + i));
+		i++;
+	    }
+	    if (sum(foundInterval) == part1) {
+		found = true;
+	    } else {
+		startpos++;
+		foundInterval = new ArrayList<Long>();
+	    }
+	   
+	}
+	ArrayList<Long> sorted = new ArrayList<Long>(foundInterval);
+	Collections.sort(sorted);
+	return sorted.get(0)+sorted.get(sorted.size()-1);
     }
-
+    
+    public long sum(ArrayList<Long> l) {
+	long res = 0;
+	for (Long val : l) res += val;
+	return res;
+    }
+	
     public ArrayList<Pair> allPreamblePairs(int offset) {
 	ArrayList<Pair> res = new ArrayList<Pair>();
 	for (int i=offset; (i<numbers.size() && i<(offset+pSize)); i++) {
