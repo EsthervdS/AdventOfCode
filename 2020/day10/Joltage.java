@@ -7,14 +7,12 @@ public class Joltage {
 
     public ArrayList<String> lines;
     public ArrayList<Long> numbers;
-    public ArrayList<Integer> oneSeqs;
     public long combis;
     
     public Joltage(String fileName) {
 	lines = new ArrayList<String>();
 	lines = IO.readFile(fileName);
 	numbers = new ArrayList<Long>();
-	oneSeqs = new ArrayList<Integer>();
 	for (String line : lines) numbers.add(Long.parseLong(line));
     }
 
@@ -45,8 +43,6 @@ public class Joltage {
 	sorted.add(0,0L);
 	sorted.add(sorted.get(sorted.size()-1)+3L);
 
-	oneSeqs = new ArrayList<Integer>();
-	
 	long curVolt = 0;
 	int oneSeq = 0;
 	combis = 1;
@@ -60,7 +56,6 @@ public class Joltage {
 		if (oneSeq == 2) combis = combis * 2;
 		if (oneSeq == 3) combis = combis * 4;
 		if (oneSeq == 4) combis = combis * 7;
-		if (oneSeq > 1) oneSeqs.add(oneSeq);
 		oneSeq = 0;
 	    }
 	    curVolt = i;
