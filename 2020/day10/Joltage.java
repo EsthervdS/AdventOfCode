@@ -8,21 +8,21 @@ public class Joltage {
     public ArrayList<String> lines;
     public ArrayList<Long> numbers;
     public long combis;
+    public ArrayList<Long> sorted;
     
     public Joltage(String fileName) {
 	lines = new ArrayList<String>();
 	lines = IO.readFile(fileName);
 	numbers = new ArrayList<Long>();
+	
 	for (String line : lines) numbers.add(Long.parseLong(line));
+	sorted = new ArrayList<Long>(numbers);
+	Collections.sort(sorted);
     }
 
     public long part1() {
 	int oneDiff = 0;
 	int threeDiff = 1;
-	
-	ArrayList<Long> sorted = new ArrayList<Long>(numbers);
-	Collections.sort(sorted);
-
 	long curVolt = 0;
 
 	for (long i : sorted) {
@@ -38,8 +38,6 @@ public class Joltage {
     }
 
     public long part2() {
-	ArrayList<Long> sorted = new ArrayList<Long>(numbers);
-	Collections.sort(sorted);
 	sorted.add(0,0L);
 	sorted.add(sorted.get(sorted.size()-1)+3L);
 
