@@ -16,9 +16,11 @@ public class Seating {
 	rows = lines.size();
 	cols = lines.get(0).length();
 	seats = new int[cols][rows];
-	stateChanged = true;
-	occupied = 0;
+    }
 
+    public void resetSeats() {
+	occupied = 0;
+	stateChanged = true;
 	for (int j=0; j<rows; j++) {
 	    for (int i=0; i<cols; i++) {
 		char c = lines.get(j).charAt(i);
@@ -30,9 +32,8 @@ public class Seating {
 		if (c=='.') seats[i][j] = 2;
 	    }
 	}
-
     }
-
+    
     public void printSeats() {
 	for (int j=0; j<rows; j++) {
 	    for (int i=0; i<cols; i++) {
@@ -47,27 +48,33 @@ public class Seating {
 	IO.print("");
     }
 
-    public int next(int i, int j) {
+    public int next(int i, int j, int p) {
 	int res = seats[i][j];
-	if ((seats[i][j] == 0) && (occupiedNeighbors(i,j)==0)) {
-	    res = 1;
-	    stateChanged = true;
-	    occupied++;
+	if (seats[i][j] == 0) {
+	    if ( ((p==1) && (occupiedNeighbors(i,j)==0)) ||
+		 ((p==2) && (occupiedNeighbors2(i,j)==0)) ) {
+		res = 1;
+		stateChanged = true;
+		occupied++;
+	    }
 	}
-	if ((seats[i][j] == 1) && (occupiedNeighbors(i,j)>=4)) {
-	    res = 0;
-	    stateChanged = true;
-	    occupied--;
+	if (seats[i][j] == 1) {
+	    if ( ((p==1) && (occupiedNeighbors(i,j)>=4)) ||
+		 ((p==2) && (occupiedNeighbors2(i,j)>=5)) ) {
+		res = 0;
+		stateChanged = true;
+		occupied--;
+	    }
 	}
 	return res;
     }
 
-    public int[][] nextSeats() {
+    public int[][] nextSeats(int p) {
 	stateChanged = false;
 	int[][] temp = new int[cols][rows];
 	for (int i=0; i<cols; i++) {
 	    for (int j=0; j<rows; j++) {
-		temp[i][j] = next(i,j);
+		temp[i][j] = next(i,j,p);
 	    }
 	}
 	return temp;
@@ -94,22 +101,86 @@ public class Seating {
 
 	return res;
     }
+
+    public int occupiedNeighbors2(int i, int j) {
+	int res = 0;
+	int ii = i;
+	int jj = j;
+
+	//top-left
+	ii = i-1; jj = j-1;
+	while ( (ii>0) && (jj>0) && (seats[ii][jj]==2) ) {
+	    ii -= 1;
+	    jj -= 1;
+	}
+	if ( (ii>=0) && (jj>=0) && (seats[ii][jj] == 1)) res++;
+
+	//left
+	ii = i-1; jj = j;
+	while ( (ii>0) && (seats[ii][jj] == 2) ) {
+	    ii -= 1;
+	}
+	if ( (ii>=0) && (seats[ii][jj] == 1)) res++;	
+	
+	//bottom-left
+	ii = i-1; jj = j+1;
+	while ( (ii>0) && (jj < rows-1) && (seats[ii][jj] == 2) ){
+	    ii -= 1;
+	    jj += 1;
+	}
+	if ( (ii>=0) && (jj <= rows-1) && (seats[ii][jj] == 1)) res++;
+	
+	//bottom
+	ii = i; jj = j+1;
+	while ( (jj < rows-1) && (seats[ii][jj] == 2) ){
+	    jj += 1;
+	}
+	if ( (jj <= rows-1) && (seats[ii][jj] == 1)) res++;
+	
+	//bottom-right
+	ii = i+1; jj = j+1;
+	while ( (ii < cols-1) && (jj < rows-1) && (seats[ii][jj] == 2) ){
+	    ii += 1;
+	    jj += 1;
+	}
+	if ((ii <= cols-1) && (jj <= rows-1) && (seats[ii][jj] == 1)) res++;
+	
+	//right
+	ii = i+1; jj = j; 
+	while ( (ii < cols-1) && (seats[ii][jj] == 2) ){
+	    ii += 1;
+	}
+	if ( (ii <= cols-1) && (seats[ii][jj] == 1)) res++;
+	
+	//top-right
+	ii = i+1; jj = j-1;
+	while ( (ii < cols-1) && (jj > 0) && (seats[ii][jj] == 2) ){
+	    ii += 1;
+	    jj -= 1;
+	}
+	if ((ii <= cols-1) && (jj >= 0) && (seats[ii][jj] == 1)) res++;
+	
+	//top
+	ii = i; jj = j-1;
+	while ( (jj > 0) && (seats[ii][jj] == 2) ){
+	    jj -= 1;
+	}
+	if ( (jj >= 0) && (seats[ii][jj] == 1)) res++;
+
+	return res;
+    }
     
-    public long part1() {
+    public long part(int p) {
+	resetSeats();
 	while (stateChanged) {
-	    seats = nextSeats();
-	    //printSeats();
+	    seats = nextSeats(p);
 	}	
 	return occupied;
     }
 
-    public long part2() {
-	return -1;
-    }
-
     public static void main(String[] args) {
 	Seating s = new Seating(args[0]);
-	IO.print("Part 1: " + s.part1());
-	IO.print("Part 2: " + s.part2());
+	IO.print("Part 1: " + s.part(1));
+	IO.print("Part 2: " + s.part(2));
     }
 }
