@@ -48,38 +48,6 @@ public class Seating {
 	IO.print("");
     }
 
-    public int next(int i, int j, int p) {
-	int res = seats[i][j];
-	if (seats[i][j] == 0) {
-	    if ( ((p==1) && (occupiedNeighbors(i,j)==0)) ||
-		 ((p==2) && (occupiedNeighbors2(i,j)==0)) ) {
-		res = 1;
-		stateChanged = true;
-		occupied++;
-	    }
-	}
-	if (seats[i][j] == 1) {
-	    if ( ((p==1) && (occupiedNeighbors(i,j)>=4)) ||
-		 ((p==2) && (occupiedNeighbors2(i,j)>=5)) ) {
-		res = 0;
-		stateChanged = true;
-		occupied--;
-	    }
-	}
-	return res;
-    }
-
-    public int[][] nextSeats(int p) {
-	stateChanged = false;
-	int[][] temp = new int[cols][rows];
-	for (int i=0; i<cols; i++) {
-	    for (int j=0; j<rows; j++) {
-		temp[i][j] = next(i,j,p);
-	    }
-	}
-	return temp;
-    }
-
     public int occupiedNeighbors(int i, int j) {
 	int res = 0;
 	//top-left
@@ -168,6 +136,38 @@ public class Seating {
 	if ( (jj >= 0) && (seats[ii][jj] == 1)) res++;
 
 	return res;
+    }
+
+    public int next(int i, int j, int p) {
+	int res = seats[i][j];
+	if (seats[i][j] == 0) {
+	    if ( ((p==1) && (occupiedNeighbors(i,j)==0)) ||
+		 ((p==2) && (occupiedNeighbors2(i,j)==0)) ) {
+		res = 1;
+		stateChanged = true;
+		occupied++;
+	    }
+	}
+	if (seats[i][j] == 1) {
+	    if ( ((p==1) && (occupiedNeighbors(i,j)>=4)) ||
+		 ((p==2) && (occupiedNeighbors2(i,j)>=5)) ) {
+		res = 0;
+		stateChanged = true;
+		occupied--;
+	    }
+	}
+	return res;
+    }
+
+    public int[][] nextSeats(int p) {
+	stateChanged = false;
+	int[][] temp = new int[cols][rows];
+	for (int i=0; i<cols; i++) {
+	    for (int j=0; j<rows; j++) {
+		temp[i][j] = next(i,j,p);
+	    }
+	}
+	return temp;
     }
     
     public long part(int p) {
