@@ -20,7 +20,10 @@ public class Ferry {
     }
 
     public long part2() {
-	return -1;
+	ship.x = ship.sx;
+	ship.y = ship.sy;
+	for (String line : lines) ship.move2(line);
+	return Math.abs(ship.x + ship.y);
     }
 
     

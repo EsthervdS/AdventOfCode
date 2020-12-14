@@ -9,12 +9,16 @@ class Ship {
     
     public int direction;
     public int x, y;
+    public int wx, wy, wq;
+    public int sx, sy;
     
     public Ship() {
 	direction = EAST;
-	x = y = 0;
+	sx = sy = x = y = 0;
+	wx = 10;
+	wy = -1;
     }
-
+    
     public void move(String s) {
 	char operation = s.charAt(0);
 	int value = Integer.parseInt(s.substring(1,s.length()));
@@ -41,5 +45,50 @@ class Ship {
 	    break;
 	default : break;
 	}
+    }
+
+    public void move2(String s) {
+	char operation = s.charAt(0);
+	int value = Integer.parseInt(s.substring(1,s.length()));
+	int ticks = 0;
+
+	switch(operation) {
+	case 'N' : wy -= value; break;
+	case 'S' : wy += value; break;
+	case 'E' : wx += value; break;
+	case 'W' : wx -= value; break;
+	case 'L' : //rotate waypoint around ship CCW
+	    ticks = value / 90;
+	    for (int i=0; i<ticks; i++) rotateWPCCW();
+	    break;
+	case 'R' : //rotate waypoint around ship CW
+	    ticks = value / 90;
+	    for (int i=0; i<ticks; i++) rotateWPCW();
+	    break;
+	case 'F' : //move ship towards waypoint
+	    for (int i=0; i<value; i++) {
+		x += wx;
+		y += wy;
+	    }
+	    break;
+	default : break;
+	}
+	//IO.print(x + " - " + y + " | " + wx + " - " + wy) ;
+    }
+
+    public void rotateWPCW() {
+	//rotate waypoint 90 degrees clockwise
+	int oldx = wx;
+	int oldy = wy;
+	wx = -1 * oldy;
+	wy = oldx;
+    }
+
+    public void rotateWPCCW() {
+	//rotate waypoint 90 degrees counterclockwise
+	int oldx = wx;
+	int oldy = wy;
+	wx = oldy;
+	wy = -1 * oldx;
     }
 }
