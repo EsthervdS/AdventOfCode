@@ -23,7 +23,7 @@ public class Ferry {
 	ship.x = ship.sx;
 	ship.y = ship.sy;
 	for (String line : lines) ship.move2(line);
-	return Math.abs(ship.x + ship.y);
+	return Math.abs(ship.x) + Math.abs(ship.y);
     }
 
     

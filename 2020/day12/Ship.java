@@ -51,7 +51,6 @@ class Ship {
 	char operation = s.charAt(0);
 	int value = Integer.parseInt(s.substring(1,s.length()));
 	int ticks = 0;
-
 	switch(operation) {
 	case 'N' : wy -= value; break;
 	case 'S' : wy += value; break;
@@ -73,7 +72,6 @@ class Ship {
 	    break;
 	default : break;
 	}
-	//IO.print(x + " - " + y + " | " + wx + " - " + wy) ;
     }
 
     public void rotateWPCW() {
