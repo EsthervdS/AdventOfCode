@@ -16,7 +16,7 @@ public class Ferry {
 
     public long part1() {
 	for (String line : lines) ship.move(line);
-	return Math.abs(ship.x + ship.y);
+	return Math.abs(ship.x) + Math.abs(ship.y);
     }
 
     public long part2() {
