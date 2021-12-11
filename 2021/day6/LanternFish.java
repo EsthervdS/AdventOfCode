@@ -2,6 +2,8 @@ import java.io.*;
 import java.util.*;
 import util.*;
 import java.time.*;
+import java.math.*;
+
 public class LanternFish {
 
     public ArrayList<String> lines;
@@ -20,32 +22,60 @@ public class LanternFish {
 	}
 
 	newFishDays = 7;
-	totalDays = 256;
+	totalDays = 80;
     }
 
-    public int part1() {
-	int res = ints.size();;
-	Queue<Fish> toDo = new LinkedList<>();
-	for (int i : ints) {
-	    toDo.add(new Fish(i,totalDays,newFishDays));
+    public long computeNewFish(int initialTimer, int daysLeft) {
+	if (initialTimer < daysLeft) {
+	    if ((initialTimer + newFishDays) <= daysLeft) {
+		//compute how many
+		int children = 1 + (int) Math.floor( (daysLeft - 1 - initialTimer) / 7);
+		long temp  = children;
+		for (int i=0; i<children; i++) {
+		    int remainingDays = daysLeft-(initialTimer+1+i*newFishDays);
+		    if (remainingDays >= newFishDays) {
+			long t = computeNewFish(8,remainingDays);
+			temp += t;
+		    }
+		}
+		return temp; 
+	    } else {
+		//single fish based on initial timer
+		return 1L;
+	    }
+	} else {
+	    //no new fish
+	    return 0L;
 	}
-	
-	while (! toDo.isEmpty() ) {
-	    Fish cur = toDo.remove();
-	    int newFish = cur.computeNewFish();
+    }
+
+    public long part1() {
+	int res = ints.size();;
+
+	for (int i : ints) {
+	    long newFish = computeNewFish(i,totalDays);
 	    res += newFish;
 
-	    for (int i=0; i<newFish; i++) {
-		int remainingDays = cur.daysLeft-(cur.initialTimer+1+i*newFishDays);
-		if (remainingDays >= newFishDays) toDo.add(new Fish(8,remainingDays,newFishDays));
+	}
+	return res;
+    }
+   
+    public long part2() {
+	totalDays = 256;
+	long res = (long) ints.size();
+	HashMap<Integer,Long> cache = new HashMap<Integer,Long>();
+	for (int i : ints) {
+	    if (cache.containsKey(i)) {
+		res += cache.get(i);
+	    } else {
+		long newFish = computeNewFish(i,totalDays);
+		res += newFish;
+		cache.put(i,newFish);
 	    }
+
 	}
 	
 	return res;
-    }
-
-    public int part2() {
-	return 0;
     }
 
     public static void main(String[] args) {
